@@ -1,1 +1,458 @@
 
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Home Stock</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f6f3;color:#253b32}
+header{background:#176b56;color:white;padding:20px;text-align:center}
+header h1{margin:0;font-size:25px}
+header p{margin:6px 0;font-size:13px}
+main{max-width:700px;margin:auto;padding:15px 15px 90px}
+.card{background:white;border-radius:15px;padding:16px;margin-bottom:13px;box-shadow:0 2px 8px #0001}
+h2{font-size:21px;margin:5px 0 15px}
+h3{font-size:16px}
+button{background:#176b56;color:white;border:0;border-radius:9px;padding:11px;font-weight:bold;cursor:pointer}
+button.secondary{background:#e4f1eb;color:#176b56}
+button.danger{background:#fce9e8;color:#a32d2d}
+input,select{width:100%;padding:12px;border:1px solid #cad7cf;border-radius:9px;font-size:15px;margin:5px 0 12px;background:white}
+label{display:block;font-size:13px;font-weight:bold;margin-top:8px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.row>*{min-width:0}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.item{padding:13px 0;border-bottom:1px solid #e9efea}
+.item:last-child{border:0}
+.muted{color:#718278;font-size:13px}
+.warning{color:#ad6514;font-weight:bold}
+.good{color:#176b56;font-weight:bold}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:white;border-radius:12px;padding:15px}
+.stat strong{display:block;font-size:27px;color:#176b56}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;border-top:1px solid #ddd;z-index:5}
+nav button{flex:1;background:white;color:#536b60;border-radius:0;font-size:11px;padding:13px 2px}
+nav button.active{background:#e4f1eb;color:#176b56}
+.hidden{display:none}
+.small{padding:8px 12px}
+.notice{background:#fff4dd;padding:12px;border-radius:10px;font-size:13px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🏠 My Home Stock</h1>
+<p id="subtitle"></p>
+</header>
+
+<main id="app"></main>
+<nav id="nav"></nav>
+
+<script>
+"use strict";
+
+const KEY="my-home-stock-data-v1";
+
+const words={
+af:{
+subtitle:"Louise se slim huisvoorraad",
+home:"Tuis",stock:"Voorraad",shopping:"Inkopies",
+settings:"Instellings",products:"Produkte",
+low:"Min voorraad",needed:"Moet koop",
+add:"Voeg produk by",name:"Produknaam",
+category:"Kategorie",quantity:"Hoeveelheid",
+unit:"Eenheid",minimum:"Minimum voorraad",
+target:"Teikenvoorraad",price:"Prys per eenheid",
+save:"Voeg by voorraad",cancel:"Kanselleer",
+edit:"Wysig",remove:"Verwyder",
+use:"Gebruik",increase:"Voeg by",
+bought:"Gekoop",buy:"Koop",
+extra:"Ekstra inkopie-item",
+addExtra:"Voeg by inkopielys",
+language:"Taal",currency:"Geldeenheid",
+backup:"Laai rugsteun af",
+restore:"Herstel rugsteun",
+budget:"Maandelikse begroting",
+spent:"Hierdie maand bestee",
+remaining:"Begroting oor",
+prediction:"Slim voorspellings",
+noHistory:"Nog nie genoeg verbruiksgeskiedenis nie",
+days:"dae se voorraad oor",
+empty:"Nog geen produkte nie",
+emptyList:"Jou inkopielys is leeg",
+automatic:"Outomatiese inkopielys",
+manual:"Handmatige inkopielys",
+search:"Soek produk...",
+confirm:"Is jy seker?",
+saved:"Outomaties gestoor",
+purchasePrice:"Totale aankoopprys",
+invalid:"Kontroleer die hoeveelhede",
+cat:["Koskas","Yskas","Vrieskas","Badkamer","Skoonmaak","Ander"]
+},
+en:{
+subtitle:"Louise's smart home inventory",
+home:"Home",stock:"Stock",shopping:"Shopping",
+settings:"Settings",products:"Products",
+low:"Low stock",needed:"To buy",
+add:"Add product",name:"Product name",
+category:"Category",quantity:"Quantity",
+unit:"Unit",minimum:"Minimum stock",
+target:"Target stock",price:"Price per unit",
+save:"Add to stock",cancel:"Cancel",
+edit:"Edit",remove:"Delete",
+use:"Use",increase:"Add",
+bought:"Bought",buy:"Buy",
+extra:"Extra shopping item",
+addExtra:"Add to shopping list",
+language:"Language",currency:"Currency",
+backup:"Download backup",
+restore:"Restore backup",
+budget:"Monthly budget",
+spent:"Spent this month",
+remaining:"Budget remaining",
+prediction:"Smart predictions",
+noHistory:"Not enough usage history yet",
+days:"days of stock left",
+empty:"No products yet",
+emptyList:"Your shopping list is empty",
+automatic:"Automatic shopping list",
+manual:"Manual shopping list",
+search:"Search products...",
+confirm:"Are you sure?",
+saved:"Automatically saved",
+purchasePrice:"Total purchase price",
+invalid:"Check the quantities",
+cat:["Pantry","Fridge","Freezer","Bathroom","Cleaning","Other"]
+}
+};
+
+function fresh(){
+return {
+lang:"af",currency:"MZN",budget:0,
+products:[],manual:[],history:[]
+};
+}
+
+let data;
+try{
+data=JSON.parse(localStorage.getItem(KEY))||fresh();
+if(!Array.isArray(data.products))throw Error();
+if(!Array.isArray(data.manual))data.manual=[];
+if(!Array.isArray(data.history))data.history=[];
+}catch(e){data=fresh();}
+
+let page="home";
+let searchText="";
+
+function t(k){return words[data.lang][k]||k;}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2);}
+function save(){
+try{
+localStorage.setItem(KEY,JSON.stringify(data));
+}catch(e){
+alert("Storage error / Stoorfout");
+}
+}
+function safe(s){
+return String(s??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",
+'"':"&quot;","'":"&#39;"
+}[c]));
+}
+function num(n){return Number(n||0).toFixed(2).replace(/\.00$/,"");}
+function money(n){return data.currency+" "+num(n);}
+function low(p){return Number(p.qty)<=Number(p.min);}
+function need(p){return Math.max(0,p.target-p.qty);}
+function record(type,p,qty,cost=0){
+data.history.unshift({
+date:new Date().toISOString(),
+type,id:p.id,name:p.name,qty:Number(qty),
+cost:Number(cost)||0
+});
+data.history=data.history.slice(0,2000);
+}
+function usage(p){
+let entries=data.history.filter(e=>e.id===p.id&&e.type==="use");
+if(!entries.length)return null;
+let total=entries.reduce((s,e)=>s+e.qty,0);
+let first=new Date(entries[entries.length-1].date);
+let days=Math.max(1,(Date.now()-first.getTime())/86400000);
+let daily=total/days;
+return daily>0?Math.floor(p.qty/daily):null;
+}
+function monthSpend(){
+let m=new Date().toISOString().slice(0,7);
+return data.history.filter(e=>e.type==="buy"&&e.date.startsWith(m))
+.reduce((s,e)=>s+e.cost,0);
+}
+
+function render(){
+document.documentElement.lang=data.lang;
+document.getElementById("subtitle").textContent=t("subtitle");
+const tabs=[
+["home","🏠",t("home")],
+["stock","📦",t("stock")],
+["shopping","🛒",t("shopping")],
+["settings","⚙️",t("settings")]
+];
+document.getElementById("nav").innerHTML=tabs.map(a=>
+`<button class="${page===a[0]?"active":""}" onclick="go('${a[0]}')">${a[1]}<div>${a[2]}</div></button>`
+).join("");
+if(page==="home")home();
+if(page==="stock")stock();
+if(page==="shopping")shopping();
+if(page==="settings")settings();
+}
+function go(p){page=p;render();window.scrollTo(0,0);}
+
+function home(){
+let lows=data.products.filter(low);
+let predictions=data.products.map(p=>({...p,days:usage(p)}))
+.filter(p=>p.days!==null&&p.days<=7);
+document.getElementById("app").innerHTML=`
+<h2>${t("home")}</h2>
+<div class="stats">
+<div class="stat">📦 ${t("products")}<strong>${data.products.length}</strong></div>
+<div class="stat">⚠️ ${t("low")}<strong>${lows.length}</strong></div>
+<div class="stat">🛒 ${t("needed")}<strong>${lows.length+data.manual.length}</strong></div>
+<div class="stat">💰 ${t("spent")}<strong style="font-size:17px">${money(monthSpend())}</strong></div>
+</div>
+<div class="card">
+<h3>🛒 ${t("automatic")}</h3>
+${lows.length?lows.map(p=>`<div class="item">${safe(p.name)} <span class="warning">— ${t("buy")} ${num(need(p))} ${safe(p.unit)}</span></div>`).join(""):`<p class="muted">${t("emptyList")}</p>`}
+<button onclick="go('shopping')">${t("shopping")}</button>
+</div>
+<div class="card">
+<h3>🔮 ${t("prediction")}</h3>
+${predictions.length?predictions.map(p=>`<div class="item">${safe(p.name)} — ${p.days} ${t("days")}</div>`).join(""):`<p class="muted">${t("noHistory")}</p>`}
+<p class="muted">Estimates based on recorded usage / Skattings volgens aangetekende verbruik.</p>
+</div>
+<div class="card">
+<h3>💰 ${t("budget")}</h3>
+<p>${t("remaining")}: <strong>${money(data.budget-monthSpend())}</strong></p>
+</div>`;
+}
+
+function stock(){
+let items=data.products.filter(p=>p.name.toLowerCase().includes(searchText.toLowerCase()));
+document.getElementById("app").innerHTML=`
+<div class="row"><h2>${t("stock")}</h2><button onclick="editor()">${t("add")}</button></div>
+<input id="search" placeholder="${t("search")}" value="${safe(searchText)}" oninput="searchStock(this.value)">
+<div class="card">
+${items.length?items.map(p=>`
+<div class="item">
+<div class="row"><strong>${safe(p.name)}</strong><span class="${low(p)?"warning":"good"}">${low(p)?t("low"):"✓"}</span></div>
+<p class="muted">${safe(p.unit)} | Min: ${num(p.min)} | Target: ${num(p.target)}</p>
+<div class="row">
+<button class="secondary small" onclick="adjust('${p.id}',-1)">−</button>
+<strong>${num(p.qty)} ${safe(p.unit)}</strong>
+<button class="secondary small" onclick="adjust('${p.id}',1)">+</button>
+</div>
+<div class="actions">
+<button class="secondary small" onclick="editor('${p.id}')">${t("edit")}</button>
+<button class="danger small" onclick="del('${p.id}')">${t("remove")}</button>
+</div>
+</div>`).join(""):`<p class="muted">${t("empty")}</p>`}
+</div>`;
+}
+function searchStock(v){
+searchText=v;
+stock();
+let el=document.getElementById("search");
+el.focus();
+el.setSelectionRange(v.length,v.length);
+}
+function editor(id=""){
+let p=data.products.find(x=>x.id===id);
+let categories=words[data.lang].cat;
+document.getElementById("app").innerHTML=`
+<div class="card">
+<h2>${p?t("edit"):t("add")}</h2>
+<form id="productForm">
+<label>${t("name")}</label>
+<input id="name" required maxlength="80" value="${safe(p?.name||"")}">
+<label>${t("category")}</label>
+<select id="category">${categories.map((c,i)=>`<option value="${i}" ${p?.cat===i?"selected":""}>${c}</option>`).join("")}</select>
+<label>${t("quantity")}</label>
+<input id="qty" type="number" min="0" step="0.01" required value="${p?.qty??0}">
+<label>${t("unit")}</label>
+<select id="unit">${["pcs","packs","kg","g","L","ml","rolls"].map(u=>`<option ${p?.unit===u?"selected":""}>${u}</option>`).join("")}</select>
+<label>${t("minimum")}</label>
+<input id="min" type="number" min="0" step="0.01" required value="${p?.min??1}">
+<label>${t("target")}</label>
+<input id="target" type="number" min="0.01" step="0.01" required value="${p?.target??3}">
+<label>${t("price")}</label>
+<input id="price" type="number" min="0" step="0.01" value="${p?.price??0}">
+<div class="actions">
+<button type="submit">${t("save")}</button>
+<button type="button" class="secondary" onclick="go('stock')">${t("cancel")}</button>
+</div></form></div>`;
+document.getElementById("productForm").onsubmit=e=>{
+e.preventDefault();
+let name=document.getElementById("name").value.trim();
+let qty=Number(document.getElementById("qty").value);
+let min=Number(document.getElementById("min").value);
+let target=Number(document.getElementById("target").value);
+if(!name||qty<0||min<0||target<=min){
+alert(t("invalid"));return;
+}
+if(data.products.some(x=>x.name.toLowerCase()===name.toLowerCase()&&x.id!==id)){
+alert("Product already exists / Produk bestaan reeds");return;
+}
+let product={
+id:id||uid(),name,
+cat:Number(document.getElementById("category").value),
+qty,unit:document.getElementById("unit").value,
+min,target,price:Number(document.getElementById("price").value)||0
+};
+if(id)data.products=data.products.map(x=>x.id===id?product:x);
+else data.products.push(product);
+save();go("stock");
+};
+}
+function adjust(id,sign){
+let p=data.products.find(x=>x.id===id);
+if(!p)return;
+let v=prompt(sign<0?t("use"):t("increase"),"1");
+if(v===null)return;
+let q=Number(v);
+if(!Number.isFinite(q)||q<=0||(sign<0&&q>p.qty)){
+alert(t("invalid"));return;
+}
+p.qty=Math.round((p.qty+sign*q)*100)/100;
+record(sign<0?"use":"add",p,q);
+save();render();
+}
+function del(id){
+if(!confirm(t("confirm")))return;
+data.products=data.products.filter(x=>x.id!==id);
+save();render();
+}
+
+function shopping(){
+let lows=data.products.filter(low);
+document.getElementById("app").innerHTML=`
+<h2>🛒 ${t("shopping")}</h2>
+<div class="card">
+<h3>${t("automatic")}</h3>
+${lows.length?lows.map(p=>`
+<div class="item">
+<div class="row"><div><strong>${safe(p.name)}</strong><p class="muted">${t("buy")} ${num(need(p))} ${safe(p.unit)}</p></div>
+<button onclick="purchase('${p.id}')">${t("bought")}</button></div>
+</div>`).join(""):`<p class="muted">${t("emptyList")}</p>`}
+</div>
+<div class="card">
+<h3>${t("manual")}</h3>
+<form id="extraForm">
+<input id="extraName" required maxlength="80" placeholder="${t("extra")}">
+<input id="extraQty" type="number" min="0.01" step="0.01" value="1" required>
+<button>${t("addExtra")}</button>
+</form>
+${data.manual.map(m=>`
+<div class="item row">
+<span>${safe(m.name)} × ${num(m.qty)}</span>
+<div class="actions">
+<button class="small" onclick="buyExtra('${m.id}')">✓</button>
+<button class="danger small" onclick="removeExtra('${m.id}')">×</button>
+</div></div>`).join("")}
+</div>`;
+document.getElementById("extraForm").onsubmit=e=>{
+e.preventDefault();
+let name=document.getElementById("extraName").value.trim();
+let qty=Number(document.getElementById("extraQty").value);
+if(!name||qty<=0)return;
+data.manual.push({id:uid(),name,qty});
+save();render();
+};
+}
+function purchase(id){
+let p=data.products.find(x=>x.id===id);
+if(!p)return;
+let q=prompt(t("quantity"),String(need(p)));
+if(q===null)return;
+q=Number(q);
+if(!Number.isFinite(q)||q<=0){alert(t("invalid"));return;}
+let cost=prompt(t("purchasePrice"),String(num(q*p.price)));
+if(cost===null)return;
+cost=Number(cost);
+if(!Number.isFinite(cost)||cost<0){alert(t("invalid"));return;}
+p.qty=Math.round((p.qty+q)*100)/100;
+record("buy",p,q,cost);
+save();render();
+}
+function buyExtra(id){
+let m=data.manual.find(x=>x.id===id);
+if(!m)return;
+let cost=prompt(t("purchasePrice"),"0");
+if(cost===null)return;
+cost=Number(cost);
+if(!Number.isFinite(cost)||cost<0){alert(t("invalid"));return;}
+record("buy",{id:m.id,name:m.name},m.qty,cost);
+data.manual=data.manual.filter(x=>x.id!==id);
+save();render();
+}
+function removeExtra(id){
+data.manual=data.manual.filter(x=>x.id!==id);
+save();render();
+}
+
+function settings(){
+document.getElementById("app").innerHTML=`
+<h2>⚙️ ${t("settings")}</h2>
+<div class="card">
+<label>${t("language")}</label>
+<select id="lang" onchange="changeLang(this.value)">
+<option value="af" ${data.lang==="af"?"selected":""}>Afrikaans</option>
+<option value="en" ${data.lang==="en"?"selected":""}>English</option>
+</select>
+<label>${t("currency")}</label>
+<select id="currency" onchange="changeCurrency(this.value)">
+<option value="MZN" ${data.currency==="MZN"?"selected":""}>MZN — Metical</option>
+<option value="ZAR" ${data.currency==="ZAR"?"selected":""}>ZAR — Rand</option>
+</select>
+<label>${t("budget")}</label>
+<input id="budget" type="number" min="0" step="0.01" value="${data.budget}" onchange="changeBudget(this.value)">
+<p class="muted">✓ ${t("saved")}</p>
+</div>
+<div class="card">
+<h3>💾 Backup / Rugsteun</h3>
+<p class="notice">Data is stored on this device and browser. Export a backup regularly. / Data word op hierdie toestel en blaaier gestoor. Maak gereeld 'n rugsteun.</p>
+<div class="actions">
+<button onclick="backup()">${t("backup")}</button>
+<button class="secondary" onclick="document.getElementById('restoreFile').click()">${t("restore")}</button>
+</div>
+<input type="file" id="restoreFile" accept=".json,application/json" style="display:none" onchange="restoreFile(this)">
+</div>`;
+}
+function changeLang(v){data.lang=v;save();render();}
+function changeCurrency(v){data.currency=v;save();render();}
+function changeBudget(v){
+let n=Number(v);
+if(!Number.isFinite(n)||n<0){alert(t("invalid"));return;}
+data.budget=n;save();
+}
+function backup(){
+let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+let url=URL.createObjectURL(blob);
+let a=document.createElement("a");
+a.href=url;
+a.download="my-home-stock-backup-"+new Date().toISOString().slice(0,10)+".json";
+a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+async function restoreFile(input){
+let file=input.files[0];
+if(!file)return;
+try{
+let obj=JSON.parse(await file.text());
+if(!Array.isArray(obj.products)||!Array.isArray(obj.manual)||!Array.isArray(obj.history))throw Error();
+if(!confirm(t("confirm")))return;
+data=obj;save();render();
+}catch(e){alert("Invalid backup / Ongeldige rugsteun");}
+}
+render();
+</script>
+</body>
+</html>
+
