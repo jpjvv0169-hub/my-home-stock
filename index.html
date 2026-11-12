@@ -4,27 +4,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ef4d98">
+<meta name="theme-color" content="#ef4b98">
 <title>My Home Stock – Pink 3D</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#702344;background:linear-gradient(145deg,#ffd1e6,#fff3f9 50%,#ffd6e9);min-height:100vh}
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(145deg,#ffd0e5,#fff2f8,#ffd1e8);color:#702448;min-height:100vh}
 button,input,select{font:inherit}
 button{cursor:pointer}
-header{text-align:center;padding:26px 12px;background:linear-gradient(135deg,#ffb9d9,#f47ab3,#ffc6df);border-radius:0 0 30px 30px;box-shadow:0 8px 20px #b74c8055}
-header h1{color:white;text-shadow:0 3px #b82c70,0 6px 9px #92295a88;font-size:30px;margin:5px}
-header p{font-weight:bold;color:#a21d60}
-main{max-width:750px;margin:auto;padding:14px 14px 115px}
-.card{background:linear-gradient(145deg,#fffaff,#ffd8ea);border:2px solid white;border-radius:25px;padding:17px;margin:14px 0;box-shadow:6px 9px 17px #b6477938,inset 3px 3px 5px white}
+header{text-align:center;padding:25px 12px;background:linear-gradient(135deg,#ffb5d5,#f477b1,#ffc2df);border-radius:0 0 30px 30px;box-shadow:0 8px 20px #b94b8050}
+header h1{font-size:30px;color:white;text-shadow:0 3px #bd276b,0 6px 9px #9e286a66;margin:6px}
+header p{font-weight:bold;color:#9c1c5a}
+main{max-width:750px;margin:auto;padding:15px 14px 115px}
+.card{background:linear-gradient(145deg,#fffaff,#ffd9eb);border:2px solid white;border-radius:25px;padding:17px;margin:14px 0;box-shadow:6px 9px 17px #b6477938,inset 3px 3px 5px white}
 .card h2{margin:0 0 14px;font-size:21px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tile{background:linear-gradient(145deg,#fffaff,#ffd1e7);border:2px solid white;border-radius:22px;padding:15px;box-shadow:4px 6px 12px #a83a7233}
-.tile .emoji{font-size:29px}
-.tile strong{display:block;color:#d91a73;font-size:29px;margin:8px 0}
+.tile strong{display:block;color:#d91a73;font-size:28px;margin:8px 0}
 .tile small{font-weight:bold}
 .btn{border:2px solid #ffc0dd;border-radius:18px;padding:13px 15px;color:white;font-weight:bold;background:linear-gradient(#ff91c3,#f32688 55%,#c30d61);box-shadow:inset 0 3px 5px #fff9,0 5px 0 #aa185a,0 8px 12px #a3326c44;margin:5px 0}
 .btn:active{transform:translateY(4px);box-shadow:0 1px 0 #aa185a}
-.secondary{background:linear-gradient(#fffaff,#ffc3df);color:#ad2163;text-shadow:none;box-shadow:inset 0 3px 5px white,0 4px 0 #df86b2}
+.secondary{background:linear-gradient(#fffaff,#ffc3df);color:#ad2163;box-shadow:inset 0 3px 5px white,0 4px 0 #df86b2}
 .danger{background:linear-gradient(#ffb3c9,#ed668c)}
 .full{width:100%}
 .actions{display:flex;gap:9px;flex-wrap:wrap}
@@ -32,8 +31,7 @@ main{max-width:750px;margin:auto;padding:14px 14px 115px}
 input,select{width:100%;padding:13px;border:2px solid #eeb6d2;border-radius:15px;background:#fffaff;color:#692443}
 label{display:block;margin:13px 0 5px;font-weight:bold;font-size:14px}
 .row{display:flex;gap:10px;align-items:center}
-.row>*{min-width:0}
-.grow{flex:1}
+.grow{flex:1;min-width:0}
 .item{border-bottom:1px solid #eab7cf;padding:13px 0}
 .item:last-child{border:0}
 .muted{color:#985b79;font-size:13px}
@@ -45,24 +43,25 @@ label{display:block;margin:13px 0 5px;font-weight:bold;font-size:14px}
 nav{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;background:linear-gradient(#fff5fc,#ffc2de);padding:9px 4px 13px;border-radius:22px 22px 0 0;box-shadow:0 -5px 18px #a3326b44}
 nav button{flex:1;min-width:0;border:0;background:transparent;color:#91395f;border-radius:14px;font-size:11px;font-weight:bold;padding:8px 1px}
 nav span{display:block;font-size:24px}
-nav .active{background:linear-gradient(#ff93c3,#ed3189);color:white;box-shadow:0 4px 8px #a3326b55}
+nav .active{background:linear-gradient(#ff93c3,#ed3189);color:white}
 video{width:100%;max-height:300px;border-radius:17px;background:#222}
-a{color:#bd1766;overflow-wrap:anywhere}
-hr{border:0;border-top:1px solid #e8b4ce}
-.hidden{display:none}
+a{color:#bd1766}
 #status{text-align:center;font-size:12px;color:#ad3873}
 </style>
 </head>
 <body>
+
 <header>
 <div style="font-size:43px">🏡🛒🌸</div>
 <h1>My Home Stock</h1>
 <p id="subtitle">💗 Louise se slim huisvoorraad 💗</p>
 </header>
+
 <main>
 <div id="app"></div>
 <p id="status"></p>
 </main>
+
 <nav id="nav"></nav>
 
 <script>
@@ -71,24 +70,6 @@ hr{border:0;border-top:1px solid #e8b4ce}
 const KEY="my-home-stock-data-v1";
 const FOOD="https://world.openfoodfacts.org/api/v2/product/";
 const BEAUTY="https://world.openbeautyfacts.org/api/v2/product/";
-
-const shops={
-ZA:[
-["Checkers","https://www.checkers.co.za/"],
-["Shoprite","https://www.shoprite.co.za/"],
-["Pick n Pay","https://www.pnp.co.za/"],
-["Woolworths","https://www.woolworths.co.za/"],
-["Makro","https://www.makro.co.za/"],
-["Clicks","https://clicks.co.za/"],
-["Dis-Chem","https://www.dischem.co.za/"],
-["SPAR","https://www.spar.co.za/"]
-],
-MZ:[
-["SPAR Mozambique","https://www.google.com/search?q=SPAR+Mozambique"],
-["Shoprite Mozambique","https://www.google.com/search?q=Shoprite+Mozambique"],
-["Maputo winkels","https://www.google.com/search?q=supermercados+Maputo"]
-]
-};
 
 const fresh=()=>({
 lang:"af",currency:"ZAR",budget:0,
@@ -105,12 +86,12 @@ data.prices=Array.isArray(data.prices)?data.prices:[];
 }catch(e){data=fresh()}
 
 let page="home";
-let editing="";
 let photoData="";
 let found=null;
 let stream=null;
 let scanning=false;
 let scanTimer=null;
+let currentProduct=null;
 
 const $=id=>document.getElementById(id);
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
@@ -120,8 +101,7 @@ const low=p=>Number(p.qty)<=Number(p.min);
 const need=p=>Math.max(0,Number(p.target)-Number(p.qty));
 const cats=["Koskas","Yskas","Vrieskas","Badkamer","Skoonmaak","Medisyne","Ander"];
 const units=["packs","items","bottels","blikkies","kg","g","L","ml"];
-const lang=()=>data.lang==="en";
-const tx=(af,en)=>lang()?en:af;
+const tx=(af,en)=>data.lang==="en"?en:af;
 
 function save(){
 try{
@@ -132,6 +112,14 @@ return true;
 alert(tx("Stoorplek vol. Maak 'n rugsteun.","Storage full. Make a backup."));
 return false;
 }
+}
+
+function record(type,p,qty,total=0){
+data.history.push({
+id:uid(),pid:p.id,name:p.name,
+barcode:p.barcode||"",type,qty,total,
+currency:data.currency,date:new Date().toISOString()
+});
 }
 
 function go(p){
@@ -155,21 +143,19 @@ $("nav").innerHTML=tabs.map(t=>`<button class="${page===t[0]?"active":""}" oncli
 }
 
 function home(){
-let products=data.products.length;
-let lows=data.products.filter(low).length;
-let needed=data.products.filter(p=>need(p)>0).length;
 let month=new Date().toISOString().slice(0,7);
-let spent=data.history.filter(h=>h.type==="buy"&&String(h.date||"").startsWith(month)).reduce((a,h)=>a+Number(h.total||0),0);
+let spent=data.history.filter(h=>h.type==="buy"&&h.currency===data.currency&&String(h.date).startsWith(month)).reduce((a,h)=>a+Number(h.total||0),0);
+let needed=data.products.filter(p=>need(p)>0).length;
 $("app").innerHTML=`
 <div class="grid">
-<div class="tile"><div class="emoji">📦</div><strong>${products}</strong><small>${tx("Produkte","Products")}</small></div>
-<div class="tile"><div class="emoji">⚠️</div><strong>${lows}</strong><small>${tx("Min voorraad","Low stock")}</small></div>
-<div class="tile"><div class="emoji">🛒</div><strong>${needed+data.manual.length}</strong><small>${tx("Inkopies","Shopping")}</small></div>
-<div class="tile"><div class="emoji">💰</div><strong style="font-size:20px">${money(spent)}</strong><small>${tx("Hierdie maand bestee","Spent this month")}</small></div>
+<div class="tile"><div style="font-size:29px">📦</div><strong>${data.products.length}</strong><small>${tx("Produkte","Products")}</small></div>
+<div class="tile"><div style="font-size:29px">⚠️</div><strong>${data.products.filter(low).length}</strong><small>${tx("Min voorraad","Low stock")}</small></div>
+<div class="tile"><div style="font-size:29px">🛒</div><strong>${needed+data.manual.length}</strong><small>${tx("Inkopies","Shopping")}</small></div>
+<div class="tile"><div style="font-size:29px">💰</div><strong style="font-size:20px">${money(spent)}</strong><small>${tx("Hierdie maand bestee","Spent this month")}</small></div>
 </div>
 <section class="card">
 <h2>🌸 ${tx("Welkom by jou kombuis","Welcome to your kitchen")}</h2>
-<p>${tx("Hou jou huisvoorraad slim en maklik op datum.","Keep your home inventory organized.")}</p>
+<p>${tx("Hou jou huisvoorraad maklik op datum.","Keep your home inventory organized.")}</p>
 <div class="actions">
 <button class="btn" onclick="go('scan')">📸 ${tx("Maak kamera oop","Open camera")}</button>
 <button class="btn secondary" onclick="editor('')">➕ ${tx("Voeg produk by","Add product")}</button>
@@ -181,9 +167,9 @@ $("app").innerHTML=`
 <button class="btn full" onclick="go('shopping')">${tx("Bekyk inkopielys","View shopping list")}</button>
 </section>
 <section class="card">
-<h2>💗 ${tx("Slim prysvergelyking","Smart price comparison")}</h2>
-<p>${tx("Soek pryse in Suid-Afrika en Mosambiek en stoor die pryse wat jy bevestig.","Search South African and Mozambican stores and save verified prices.")}</p>
-<button class="btn full" onclick="go('scan')">🔎 ${tx("Soek winkelpryse","Search store prices")}</button>
+<h2>💗 ${tx("Slim voorraadbeheer","Smart stock management")}</h2>
+<p>${tx("Skandeer 'n produk om voorraad by te voeg of te gebruik.","Scan a product to add or use stock.")}</p>
+<button class="btn full" onclick="go('scan')">📸 ${tx("Skandeer nou","Scan now")}</button>
 </section>`;
 }
 
@@ -207,36 +193,83 @@ $("stockList").innerHTML=arr.length?arr.map(p=>`
 ${p.image?`<img class="pic" src="${esc(p.image)}">`:`<div style="font-size:40px">📦</div>`}
 <div class="grow">
 <b>${esc(p.name)}</b><br>
-<span class="muted">${esc(cats[p.cat]||p.cat||"Ander")} · ${esc(p.barcode||"")}</span><br>
+<span class="muted">${esc(p.barcode||"")}</span><br>
 <strong class="${low(p)?"warn":"good"}">${Number(p.qty)||0} ${esc(p.unit||"items")}</strong>
 </div>
 </div>
 <div class="actions">
-<button class="btn secondary" onclick="changeQty('${p.id}',-1)">➖ ${tx("Gebruik","Use")}</button>
-<button class="btn secondary" onclick="changeQty('${p.id}',1)">➕ ${tx("Koop","Buy")}</button>
+<button class="btn secondary" onclick="manage('${p.id}')">➕➖ ${tx("Bestuur","Manage")}</button>
 <button class="btn" onclick="editor('${p.id}')">✏️ ${tx("Wysig","Edit")}</button>
-<button class="btn secondary" onclick="compare('${p.id}')">🔎 ${tx("Pryse","Prices")}</button>
 </div>
 </div>`).join(""):`<p>${tx("Geen produkte gevind nie.","No products found.")}</p>`;
 }
 
-function changeQty(id,delta){
+function manage(id){
 const p=data.products.find(x=>x.id===id);
 if(!p)return;
-let amount=Number(prompt(tx("Hoeveel eenhede?","How many units?"),"1"));
-if(!Number.isFinite(amount)||amount<=0)return;
-if(delta<0)amount=Math.min(amount,Number(p.qty));
-p.qty=Math.max(0,Number(p.qty)+delta*amount);
-data.history.push({
-id:uid(),pid:id,type:delta>0?"buy":"use",
-qty:amount,total:delta>0?amount*Number(p.price||0):0,
-date:new Date().toISOString()
-});
-save();render();
+currentProduct=p;
+page="stock";
+render();
+showManage();
+}
+
+function showManage(){
+const p=currentProduct;
+$("app").innerHTML=`
+<section class="card">
+<h2>📦 ${esc(p.name)}</h2>
+${p.image?`<img class="preview" src="${esc(p.image)}">`:""}
+<p class="muted">Barcode: ${esc(p.barcode||"")}</p>
+<div class="tile">
+<small>${tx("Huidige voorraad","Current stock")}</small>
+<strong>${Number(p.qty)} ${esc(p.unit||"items")}</strong>
+</div>
+<h2 style="margin-top:20px">${tx("Bestuur voorraad","Manage stock")}</h2>
+<label>${tx("Wat wil jy doen?","What would you like to do?")}</label>
+<select id="action" onchange="previewStock()">
+<option value="add">➕ ${tx("Voeg voorraad by","Add stock")}</option>
+<option value="use">➖ ${tx("Gebruik voorraad","Use stock")}</option>
+</select>
+<label>${tx("Hoeveelheid","Quantity")}</label>
+<input id="amount" type="number" min="0.01" step="any" value="1" oninput="previewStock()">
+<div class="note" id="preview"></div>
+<button class="btn full" onclick="confirmStock()">✓ ${tx("Bevestig en stoor","Confirm and save")}</button>
+<button class="btn secondary full" onclick="go('stock')">${tx("Terug","Back")}</button>
+</section>`;
+previewStock();
+}
+
+function previewStock(){
+const p=currentProduct;
+const raw=$("amount").value;
+const qty=Number(raw);
+const action=$("action").value;
+const valid=raw.trim()!==""&&Number.isFinite(qty)&&qty>0&&(action!=="use"||qty<=Number(p.qty));
+$("preview").innerHTML=valid
+?`<b>${tx("Nuwe voorraad ná bevestiging","New stock after confirmation")}: ${(Number(p.qty)+(action==="add"?qty:-qty)).toFixed(2)} ${esc(p.unit||"items")}</b>`
+:`<span class="warn">${tx("Ongeldige hoeveelheid of onvoldoende voorraad.","Invalid quantity or insufficient stock.")}</span>`;
+}
+
+function confirmStock(){
+const p=currentProduct;
+const raw=$("amount").value;
+const qty=Number(raw);
+const action=$("action").value;
+if(raw.trim()===""||!Number.isFinite(qty)||qty<=0||(action==="use"&&qty>Number(p.qty))){
+alert(tx("Ongeldige hoeveelheid of onvoldoende voorraad.","Invalid quantity or insufficient stock."));
+return;
+}
+const next=Math.round((Number(p.qty)+(action==="add"?qty:-qty))*100)/100;
+if(!confirm(`${p.name}\n${tx("Huidige voorraad","Current stock")}: ${p.qty}\n${action==="add"?"+":"-"} ${qty}\n${tx("Nuwe voorraad","New stock")}: ${next}\n\n${tx("Bevestig verandering?","Confirm change?")}`))return;
+p.qty=next;
+record(action==="add"?"add":"use",p,qty);
+if(save()){
+currentProduct=p;
+showManage();
+}
 }
 
 function editor(id,seed={}){
-editing=id;
 const p=data.products.find(x=>x.id===id)||seed;
 photoData=p.image||"";
 page="stock";
@@ -263,7 +296,7 @@ $("app").innerHTML=`
 <label>${tx("Produkfoto","Product photo")}</label>
 <input type="file" accept="image/*" onchange="readPhoto(this)">
 <div id="photoBox">${photoData?`<img class="preview" src="${esc(photoData)}">`:""}</div>
-<button class="btn full" onclick="saveProduct()">💾 ${tx("Stoor produk","Save product")}</button>
+<button class="btn full" onclick="saveProduct('${id}')">💾 ${tx("Stoor produk","Save product")}</button>
 ${id?`<button class="btn danger full" onclick="deleteProduct('${id}')">🗑️ ${tx("Verwyder produk","Delete product")}</button>`:""}
 <button class="btn secondary full" onclick="go('stock')">${tx("Kanselleer","Cancel")}</button>
 </section>`;
@@ -289,9 +322,14 @@ img.src=r.result;
 r.readAsDataURL(file);
 }
 
-function saveProduct(){
+function saveProduct(id){
 const name=$("pName").value.trim();
 const barcode=$("pBarcode").value.trim();
+const fields=["pQty","pMin","pTarget","pPrice"];
+if(fields.some(k=>$(k).value.trim()==="")){
+alert(tx("Vul al die waardes in.","Complete all values."));
+return;
+}
 const qty=Number($("pQty").value);
 const min=Number($("pMin").value);
 const target=Number($("pTarget").value);
@@ -300,17 +338,18 @@ if(!name||[qty,min,target,price].some(v=>!Number.isFinite(v)||v<0)||target<min){
 alert(tx("Kontroleer die waardes. Teiken mag dieselfde as minimum wees.","Check values. Target may equal minimum."));
 return;
 }
-if(barcode&&data.products.some(p=>p.barcode===barcode&&p.id!==editing)){
-alert(tx("Barcode bestaan reeds.","Barcode already exists."));return;
+if(barcode&&data.products.some(p=>p.barcode===barcode&&p.id!==id)){
+alert(tx("Barcode bestaan reeds.","Barcode already exists."));
+return;
 }
-const old=data.products.find(p=>p.id===editing);
+const old=data.products.find(p=>p.id===id);
 const p={
-...(old||{}),id:editing||uid(),name,barcode,
+...(old||{}),id:id||uid(),name,barcode,
 cat:Number($("pCat").value),qty,
 unit:$("pUnit").value,min,target,price,
 currency:data.currency,image:photoData
 };
-if(old)data.products=data.products.map(x=>x.id===editing?p:x);
+if(old)data.products=data.products.map(x=>x.id===id?p:x);
 else data.products.push(p);
 if(save())go("stock");
 }
@@ -340,10 +379,11 @@ $("app").innerHTML=`
 
 async function startCamera(){
 if(!navigator.mediaDevices?.getUserMedia){
-alert(tx("Kamera word nie ondersteun nie.","Camera not supported."));return;
+alert(tx("Kamera word nie ondersteun nie.","Camera not supported."));
+return;
 }
 if(!("BarcodeDetector" in window)){
-alert(tx("Hierdie blaaier ondersteun nie outomatiese barcode-skandering nie. Tik die barcode self.","This browser does not support automatic barcode scanning. Enter it manually."));
+alert(tx("Outomatiese skandering word nie deur hierdie blaaier ondersteun nie. Tik die barcode self.","Automatic scanning is not supported. Enter barcode manually."));
 return;
 }
 try{
@@ -368,23 +408,33 @@ return;
 scanTimer=setTimeout(tick,350);
 };
 tick();
-}catch(e){alert(tx("Kan nie kamera oopmaak nie.","Cannot open camera."));}
+}catch(e){
+alert(tx("Kan nie kamera oopmaak nie.","Cannot open camera."));
+}
 }
 
 function stopCamera(){
 scanning=false;
 clearTimeout(scanTimer);
-if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}
+if(stream){
+stream.getTracks().forEach(t=>t.stop());
+stream=null;
+}
 }
 
 async function lookupCode(){
 const code=$("scanCode").value.trim();
 if(!/^[0-9]{8,14}$/.test(code)){
-alert(tx("Voer 'n geldige barcode in.","Enter a valid barcode."));return;
+alert(tx("Voer 'n geldige barcode in.","Enter a valid barcode."));
+return;
 }
 stopCamera();
 const existing=data.products.find(p=>p.barcode===code);
-if(existing){found=existing;showFound(true);return;}
+if(existing){
+found=existing;
+showFound(true);
+return;
+}
 $("scanResult").innerHTML=`<div class="card">🔎 ${tx("Soek tans...","Searching...")}</div>`;
 found={barcode:code,name:"",image:"",qty:1,min:1,target:2,price:0,unit:"packs",cat:0};
 for(const base of [FOOD,BEAUTY]){
@@ -404,131 +454,46 @@ showFound(false);
 }
 
 function showFound(existing){
+const p=found;
 $("scanResult").innerHTML=`
 <div class="card">
-<h2>${existing?"📦":"🔎"} ${esc(found.name||tx("Produk nie gevind nie","Product not found"))}</h2>
-${found.image?`<img class="preview" src="${esc(found.image)}">`:""}
-<p class="muted">Barcode: ${esc(found.barcode)}</p>
-<button class="btn full" onclick="registerFound()">${existing?tx("Wysig produk","Edit product"):tx("Voeg produk by","Add product")}</button>
-<button class="btn secondary full" onclick="compareFound()">🌍 ${tx("Soek winkelpryse","Search store prices")}</button>
+<h2>📦 ${esc(p.name||tx("Produk nie gevind nie","Product not found"))}</h2>
+${p.image?`<img class="preview" src="${esc(p.image)}">`:""}
+<p class="muted">Barcode: ${esc(p.barcode)}</p>
+${existing?`
+<div class="tile">
+<small>${tx("Huidige voorraad","Current stock")}</small>
+<strong>${Number(p.qty)} ${esc(p.unit||"items")}</strong>
+</div>
+<button class="btn full" onclick="manage('${p.id}')">➕➖ ${tx("Voeg by of gebruik voorraad","Add or use stock")}</button>
+<button class="btn secondary full" onclick="editor('${p.id}')">✏️ ${tx("Wysig produk","Edit product")}</button>
+`:`
+<p>${tx("Hierdie produk is nog nie in jou voorraad nie.","This product is not in your inventory yet.")}</p>
+<button class="btn full" onclick="registerFound()">➕ ${tx("Registreer produk","Register product")}</button>
+`}
+<button class="btn secondary full" onclick="searchPrices()">🌍 ${tx("Soek winkelpryse","Search store prices")}</button>
 </div>`;
 }
 
 function registerFound(){
-const p=found;
-if(!p)return;
-editor(data.products.find(x=>x.barcode===p.barcode)?.id||"",p);
+if(found)editor("",found);
 }
 
-function compareFound(){
-if(found)compare("",found);
-}
-
-function compare(id,seed=null){
-const p=data.products.find(x=>x.id===id)||seed;
-if(!p)return;
-page="scan";
-render();
-const q=[p.name,p.barcode].filter(Boolean).join(" ");
-const saved=data.prices.filter(x=>x.barcode===p.barcode||(x.name&&x.name===p.name));
-$("app").innerHTML=`
-<section class="card">
-<h2>🌍 ${tx("Vergelyk winkelpryse","Compare store prices")}</h2>
-<h3>${esc(p.name||p.barcode)}</h3>
-<p class="muted">${tx("Soek pryse op verskillende winkels se webwerwe. Nie alle winkels laat outomatiese prysuitlees toe nie.","Search prices on different store websites. Not all stores allow automatic price extraction.")}</p>
-<label>${tx("Soekland","Search country")}</label>
-<select id="country" onchange="storeLinks()">
-<option value="ZA">🇿🇦 Suid-Afrika</option>
-<option value="MZ">🇲🇿 Mosambiek</option>
-</select>
-<div id="storeLinks"></div>
-</section>
-<section class="card">
-<h2>💰 ${tx("Bevestigde pryse","Confirmed prices")}</h2>
-<div id="savedPrices"></div>
-</section>
-<section class="card">
-<h2>➕ ${tx("Stoor winkelprys","Save store price")}</h2>
-<label>${tx("Winkelnaam","Store name")}</label>
-<input id="shopName" placeholder="Checkers / Shoprite / SPAR">
-<label>${tx("Prys","Price")}</label>
-<input id="shopPrice" type="number" min="0" step="0.01">
-<label>${tx("Geldeenheid","Currency")}</label>
-<select id="shopCurrency"><option value="ZAR">ZAR – Rand</option><option value="MZN">MZN – Metical</option></select>
-<label>${tx("Produkbladsy (opsioneel)","Product URL (optional)")}</label>
-<input id="shopUrl" placeholder="https://...">
-<button class="btn full" onclick="addPrice('${esc(p.barcode||"")}','${esc(p.name||"")}')">💾 ${tx("Stoor prys","Save price")}</button>
-</section>`;
-window.currentCompare=p;
-storeLinks();
-savedPrices();
-}
-
-function storeLinks(){
-const country=$("country").value;
-const p=window.currentCompare;
-const query=[p.name,p.barcode].filter(Boolean).join(" ");
-const list=shops[country];
-$("storeLinks").innerHTML=`
-<div class="note">
-${tx("Tik op 'n winkel om sy produkte te soek. Bevestig self die prys en verpakking voordat jy dit stoor.","Tap a store to search its products. Verify price and pack size before saving.")}
-</div>
-${list.map(([name,url])=>{
-const domain=(()=>{try{return new URL(url).hostname}catch(e){return""}})();
-const search=domain.includes("google.com")
-?url+"+"+encodeURIComponent(query)
-:"https://www.google.com/search?q="+encodeURIComponent(query+" site:"+domain);
-return `<div class="item"><b>🏪 ${esc(name)}</b><br><a href="${esc(search)}" target="_blank" rel="noopener noreferrer">${tx("Soek prys by winkel","Search store price")}</a></div>`;
-}).join("")}
-<div class="item"><a target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=${encodeURIComponent(query+" price "+(country==="ZA"?"South Africa":"Mozambique"))}">🌐 ${tx("Soek die hele internet","Search the web")}</a></div>`;
-}
-
-function addPrice(barcode,name){
-const shop=$("shopName").value.trim();
-const price=Number($("shopPrice").value);
-const currency=$("shopCurrency").value;
-const url=$("shopUrl").value.trim();
-if(!shop||!Number.isFinite(price)||price<=0){
-alert(tx("Vul winkel en geldige prys in.","Enter store and valid price."));return;
-}
-if(url&&!/^https?:\/\/\S+$/i.test(url)){
-alert(tx("Ongeldige webskakel.","Invalid URL."));return;
-}
-data.prices.push({
-id:uid(),barcode,name,shop,price,currency,url,
-date:new Date().toISOString()
-});
-save();
-compare("",window.currentCompare);
-}
-
-function savedPrices(){
-const p=window.currentCompare;
-const arr=data.prices.filter(x=>x.barcode===p.barcode||(x.name&&x.name===p.name));
-if(!arr.length){
-$("savedPrices").innerHTML=`<p>${tx("Nog geen pryse gestoor nie.","No prices saved yet.")}</p>`;
-return;
-}
-const latest=new Map();
-arr.forEach(x=>latest.set(x.shop+"|"+x.currency,x));
-const values=[...latest.values()].sort((a,b)=>a.currency.localeCompare(b.currency)||a.price-b.price);
-$("savedPrices").innerHTML=values.map(x=>{
-const same=values.filter(y=>y.currency===x.currency);
-const best=Math.min(...same.map(y=>Number(y.price)));
-return `<div class="item">
-<b>${esc(x.shop)}</b> ${x.price===best?`<span class="good">🏆 ${tx("Goedkoopste gestoor","Lowest saved")}</span>`:""}<br>
-<strong>${money(x.price,x.currency)}</strong><br>
-<span class="muted">${new Date(x.date).toLocaleDateString()} · ${tx("Handmatig bevestig","Manually confirmed")}</span><br>
-${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${tx("Maak winkel oop","Open store")}</a>`:""}
-<button class="btn secondary" style="padding:7px 10px" onclick="removePrice('${x.id}')">🗑️</button>
+function searchPrices(){
+if(!found)return;
+currentProduct=found;
+const q=encodeURIComponent([found.name,found.barcode].filter(Boolean).join(" "));
+$("scanResult").innerHTML=`
+<div class="card">
+<h2>🌍 ${tx("Winkelpryse","Store prices")}</h2>
+<p><b>${esc(found.name||found.barcode)}</b></p>
+<div class="note">${tx("Hierdie gratis weergawe kan winkelsoektogte oopmaak, maar kan nie alle lewendige pryse outomaties lees nie.","This free version can open store searches but cannot automatically read all live prices.")}</div>
+<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=${q}+South+Africa+price">🇿🇦 ${tx("Soek Suid-Afrikaanse pryse","Search South African prices")}</a>
+<hr>
+<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=${q}+Mozambique+preco">🇲🇿 ${tx("Soek Mosambiekse pryse","Search Mozambican prices")}</a>
+<hr>
+<button class="btn secondary full" onclick="showFound(!!data.products.find(p=>p.barcode===found.barcode))">${tx("Terug","Back")}</button>
 </div>`;
-}).join("")+`<p class="muted">${tx("Rand en metical word apart vergelyk. Geen wisselkoers word geraai nie.","Rand and metical are compared separately. No exchange rate is guessed.")}</p>`;
-}
-
-function removePrice(id){
-if(!confirm(tx("Verwyder hierdie prys?","Remove this price?")))return;
-data.prices=data.prices.filter(x=>x.id!==id);
-save();savedPrices();
 }
 
 function shopping(){
@@ -541,15 +506,15 @@ ${needed.length?needed.map(p=>`
 <b>${esc(p.name)}</b><br>
 ${tx("Koop","Buy")}: <strong>${need(p)} ${esc(p.unit||"items")}</strong><br>
 <span class="muted">${tx("Geskatte koste","Estimated cost")}: ${money(need(p)*Number(p.price||0),p.currency||data.currency)}</span>
-<div class="actions">
-<button class="btn secondary" onclick="compare('${p.id}')">🔎 ${tx("Vergelyk pryse","Compare prices")}</button>
-<button class="btn" onclick="buyNeeded('${p.id}')">✓ ${tx("Gekoop","Bought")}</button>
-</div>
+<button class="btn full" onclick="buyNeeded('${p.id}')">✓ ${tx("Gekoop","Bought")}</button>
 </div>`).join(""):`<p>${tx("Alles is op voorraad!","Everything is stocked!")}</p>`}
 </section>
 <section class="card">
 <h2>📝 ${tx("Ekstra inkopielys","Extra shopping list")}</h2>
-<div class="row"><input id="manualText" placeholder="${tx("Voeg item by","Add item")}"><button class="btn" onclick="addManual()">➕</button></div>
+<div class="row">
+<input id="manualText" placeholder="${tx("Voeg item by","Add item")}">
+<button class="btn" onclick="addManual()">➕</button>
+</div>
 ${data.manual.map((m,i)=>`<div class="item row"><div class="grow">${esc(typeof m==="string"?m:m.name||m.text||"Item")}</div><button class="btn secondary" onclick="removeManual(${i})">✓</button></div>`).join("")}
 </section>`;
 }
@@ -560,7 +525,7 @@ if(!p)return;
 const qty=need(p);
 if(qty<=0)return;
 p.qty=Number(p.qty)+qty;
-data.history.push({id:uid(),pid:id,type:"buy",qty,total:qty*Number(p.price||0),date:new Date().toISOString()});
+record("buy",p,qty,qty*Number(p.price||0));
 save();render();
 }
 
@@ -581,29 +546,29 @@ $("app").innerHTML=`
 <section class="card">
 <h2>⚙️ ${tx("Instellings","Settings")}</h2>
 <label>${tx("Taal","Language")}</label>
-<select id="language" onchange="data.lang=this.value;save();render()">
+<select onchange="data.lang=this.value;save();render()">
 <option value="af" ${data.lang==="af"?"selected":""}>Afrikaans</option>
 <option value="en" ${data.lang==="en"?"selected":""}>English</option>
 </select>
 <label>${tx("Geldeenheid","Currency")}</label>
-<select id="currency" onchange="data.currency=this.value;save();render()">
+<select onchange="data.currency=this.value;save();render()">
 <option value="ZAR" ${data.currency==="ZAR"?"selected":""}>🇿🇦 Rand – ZAR</option>
 <option value="MZN" ${data.currency==="MZN"?"selected":""}>🇲🇿 Metical – MZN</option>
 </select>
 <label>${tx("Maandelikse begroting","Monthly budget")}</label>
-<input id="budget" type="number" min="0" value="${data.budget||0}" onchange="data.budget=Number(this.value)||0;save()">
+<input type="number" min="0" value="${data.budget||0}" onchange="data.budget=Number(this.value)||0;save()">
 </section>
 <section class="card">
 <h2>💾 ${tx("Rugsteun en herstel","Backup and restore")}</h2>
 <button class="btn full" onclick="backup()">⬇️ ${tx("Laai rugsteun af","Download backup")}</button>
 <label>${tx("Herstel rugsteun","Restore backup")}</label>
 <input type="file" accept=".json,application/json" onchange="restore(this)">
-<p class="note">${tx("Data word op hierdie toestel se blaaier gestoor. Dit sinkroniseer nie outomaties tussen telefone nie. Maak gereeld 'n rugsteun.","Data is stored in this device's browser. It does not sync automatically between phones. Back up regularly.")}</p>
+<p class="note">${tx("Data word op hierdie toestel se blaaier gestoor. Maak gereeld 'n rugsteun.","Data is stored in this device's browser. Back up regularly.")}</p>
 </section>
 <section class="card">
 <h2>🌸 My Home Stock</h2>
-<p>${tx("Pink 3D Edition vir Louise","Pink 3D Edition for Louise")}</p>
-<p class="muted">${tx("Internetpryssoektogte is skakels na winkels en soekenjins. Pryse word nie outomaties van winkelwebwerwe af ingelees nie.","Internet price searches link to stores and search engines. Prices are not automatically extracted from store websites.")}</p>
+<p>Pink 3D Edition 💗</p>
+<p class="muted">${tx("Skandeer produkte, voeg voorraad by en trek gebruikte voorraad af.","Scan products, add stock and subtract used stock.")}</p>
 </section>`;
 }
 
@@ -631,7 +596,9 @@ data.manual=Array.isArray(data.manual)?data.manual:[];
 data.history=Array.isArray(data.history)?data.history:[];
 data.prices=Array.isArray(data.prices)?data.prices:[];
 save();go("home");
-}catch(e){alert(tx("Ongeldige rugsteunlêer.","Invalid backup file."));}
+}catch(e){
+alert(tx("Ongeldige rugsteunlêer.","Invalid backup file."));
+}
 };
 r.readAsText(file);
 }
