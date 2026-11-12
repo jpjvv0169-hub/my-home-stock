@@ -1,1 +1,695 @@
 
+<!DOCTYPE html>
+<html lang="af">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#176b56">
+<title>My Home Stock V3</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f6f2;color:#243d33;font-family:Arial,sans-serif}
+header{background:#176b56;color:white;text-align:center;padding:22px}
+header h1{margin:0;font-size:25px}
+header p{margin:7px 0 0;font-size:13px}
+main{max-width:700px;margin:auto;padding:15px 15px 95px}
+.card{background:white;border-radius:17px;padding:17px;margin-bottom:14px;box-shadow:0 2px 9px #0001}
+h2{font-size:22px;margin:5px 0 16px}
+h3{font-size:17px}
+button{background:#176b56;color:white;border:0;border-radius:10px;padding:12px;font-weight:bold;cursor:pointer}
+button.secondary{background:#e4f1e9;color:#176b56}
+button.danger{background:#fbe5e5;color:#a52e2e}
+button:disabled{opacity:.5}
+input,select{width:100%;padding:12px;border:1px solid #cbd8cf;border-radius:10px;font-size:16px;margin:6px 0 13px;background:white}
+label{display:block;font-weight:bold;font-size:13px;margin-top:10px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.item{padding:14px 0;border-bottom:1px solid #e9efea}
+.item:last-child{border:0}
+.muted{color:#718177;font-size:13px}
+.good{color:#16804d}
+.bad{color:#b92e2e}
+.warn{color:#a97112}
+.notice{background:#fff2da;padding:12px;border-radius:10px;font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:white;border-radius:13px;padding:15px}
+.stat strong{display:block;font-size:26px;color:#176b56;margin-top:7px}
+.photo{width:85px;height:85px;object-fit:contain;border-radius:10px;background:#f4f4f4}
+.preview{max-width:160px;max-height:160px;object-fit:contain;border-radius:12px}
+.full{width:100%;margin-top:9px}
+video{width:100%;border-radius:12px;max-height:330px;background:#111}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;border-top:1px solid #ddd;z-index:10}
+nav button{flex:1;background:white;color:#60776b;border-radius:0;padding:12px 1px;font-size:11px}
+nav button.active{background:#e2f1e8;color:#176b56}
+#status{font-size:12px;text-align:center;color:#176b56;padding:5px}
+</style>
+</head>
+<body>
+<header>
+<h1>🏠 My Home Stock</h1>
+<p id="subtitle"></p>
+</header>
+<div id="status"></div>
+<main id="app"></main>
+<nav id="nav"></nav>
+
+<script>
+"use strict";
+const KEY="my-home-stock-data-v1";
+const OFF="https://world.openfoodfacts.org/api/v2/product/";
+const BEAUTY="https://world.openbeautyfacts.org/api/v2/product/";
+const PRICE="https://prices.openfoodfacts.org/api/v1/prices";
+
+const T={
+af:{
+home:"Tuis",stock:"Voorraad",scan:"Skandeer",
+shopping:"Inkopies",settings:"Instellings",
+subtitle:"Louise se slim huisvoorraad",
+products:"Produkte",low:"Min voorraad",
+add:"Voeg produk by",name:"Produknaam",
+quantity:"Hoeveelheid",minimum:"Minimum voorraad",
+target:"Teikenvoorraad",unit:"Eenheid",
+category:"Kategorie",price:"Prys per eenheid",
+save:"Voeg by voorraad",edit:"Wysig",
+delete:"Verwyder",cancel:"Kanselleer",
+search:"Soek produk",camera:"Maak kamera oop",
+stop:"Stop kamera",barcode:"Barcode",
+unknown:"Produk nie gevind nie",
+photo:"Produkfoto",takePhoto:"Neem of kies foto",
+country:"Land",shopName:"Winkelnaam",
+shopPrice:"Winkelprys",average:"Gemiddelde prys",
+compare:"Vergelyk prys",bought:"Gekoop",
+good:"GOEIE PRYS",normal:"NORMALE PRYS",
+expensive:"DUUR",noData:"Onvoldoende prysdata",
+manual:"Ekstra inkopielys",auto:"Outomatiese inkopielys",
+language:"Taal",currency:"Geldeenheid",
+budget:"Maandelikse begroting",
+spent:"Hierdie maand bestee",
+backup:"Laai rugsteun af",restore:"Herstel rugsteun",
+prediction:"Slim voorspellings",
+empty:"Geen produkte nie",
+days:"dae oor",
+confirm:"Is jy seker?",
+invalid:"Kontroleer die waardes",
+cats:["Koskas","Yskas","Vrieskas","Badkamer","Skoonmaak","Medisyne","Ander"]
+},
+en:{
+home:"Home",stock:"Stock",scan:"Scan",
+shopping:"Shopping",settings:"Settings",
+subtitle:"Louise's smart home inventory",
+products:"Products",low:"Low stock",
+add:"Add product",name:"Product name",
+quantity:"Quantity",minimum:"Minimum stock",
+target:"Target stock",unit:"Unit",
+category:"Category",price:"Price per unit",
+save:"Add to stock",edit:"Edit",
+delete:"Delete",cancel:"Cancel",
+search:"Find product",camera:"Open camera",
+stop:"Stop camera",barcode:"Barcode",
+unknown:"Product not found",
+photo:"Product photo",takePhoto:"Take or choose photo",
+country:"Country",shopName:"Store name",
+shopPrice:"Store price",average:"Average price",
+compare:"Compare price",bought:"Bought",
+good:"GOOD PRICE",normal:"NORMAL PRICE",
+expensive:"EXPENSIVE",noData:"Insufficient price data",
+manual:"Extra shopping list",auto:"Automatic shopping list",
+language:"Language",currency:"Currency",
+budget:"Monthly budget",
+spent:"Spent this month",
+backup:"Download backup",restore:"Restore backup",
+prediction:"Smart predictions",
+empty:"No products",
+days:"days remaining",
+confirm:"Are you sure?",
+invalid:"Check the values",
+cats:["Pantry","Fridge","Freezer","Bathroom","Cleaning","Medicine","Other"]
+}
+};
+
+function fresh(){
+return {lang:"af",currency:"MZN",budget:0,
+products:[],manual:[],history:[]};
+}
+let data;
+try{
+data=JSON.parse(localStorage.getItem(KEY))||fresh();
+if(!Array.isArray(data.products))throw Error();
+if(!Array.isArray(data.manual))data.manual=[];
+if(!Array.isArray(data.history))data.history=[];
+}catch(e){data=fresh();}
+let page="home",found=null,prices=[];
+let stream=null,scanning=false,detector=null;
+let scanToken=0,photoData="",searchText="";
+
+function tr(k){return T[data.lang][k]||k;}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2);}
+function esc(s){
+return String(s??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",
+'"':"&quot;","'":"&#39;"
+}[c]));
+}
+function n(v){return Number(v||0).toFixed(2);}
+function symbol(c){return c==="ZAR"?"R ":"MT ";}
+function money(v,c=data.currency){return symbol(c)+n(v);}
+function save(){
+try{
+localStorage.setItem(KEY,JSON.stringify(data));
+document.getElementById("status").textContent=
+data.lang==="af"?"✓ Outomaties gestoor":"✓ Automatically saved";
+}catch(e){alert("Storage full / Stoorplek vol. Make a backup.");}
+}
+function low(p){return Number(p.qty)<=Number(p.min);}
+function need(p){return Math.max(0,p.target-p.qty);}
+function history(type,p,qty,cost=0,currency=data.currency,shop=""){
+data.history.unshift({
+date:new Date().toISOString(),type,
+id:p.id,name:p.name,barcode:p.barcode||"",
+qty:Number(qty),cost:Number(cost),
+currency,shop
+});
+data.history=data.history.slice(0,3000);
+}
+function usage(p){
+let entries=data.history.filter(x=>x.id===p.id&&x.type==="use");
+if(!entries.length)return null;
+let total=entries.reduce((s,x)=>s+x.qty,0);
+let first=new Date(entries[entries.length-1].date).getTime();
+let days=Math.max(1,(Date.now()-first)/86400000);
+return Math.floor(p.qty/(total/days));
+}
+function spent(){
+let month=new Date().toISOString().slice(0,7);
+return data.history.filter(x=>x.type==="buy"&&
+x.currency===data.currency&&x.date.startsWith(month))
+.reduce((s,x)=>s+x.cost,0);
+}
+function render(){
+document.documentElement.lang=data.lang;
+document.getElementById("subtitle").textContent=tr("subtitle");
+let tabs=[
+["home","🏠",tr("home")],
+["stock","📦",tr("stock")],
+["scan","📷",tr("scan")],
+["shopping","🛒",tr("shopping")],
+["settings","⚙️",tr("settings")]
+];
+document.getElementById("nav").innerHTML=tabs.map(a=>
+`<button class="${page===a[0]?"active":""}" onclick="go('${a[0]}')">${a[1]}<div>${a[2]}</div></button>`
+).join("");
+if(page==="home")home();
+if(page==="stock")stock();
+if(page==="scan")scanPage();
+if(page==="shopping")shopping();
+if(page==="settings")settings();
+}
+function go(p){
+stopCamera();page=p;render();window.scrollTo(0,0);
+}
+
+function home(){
+let lows=data.products.filter(low);
+let preds=data.products.map(p=>({...p,days:usage(p)}))
+.filter(p=>p.days!==null&&p.days<=7);
+document.getElementById("app").innerHTML=`
+<h2>🏠 ${tr("home")}</h2>
+<div class="grid">
+<div class="stat">📦 ${tr("products")}<strong>${data.products.length}</strong></div>
+<div class="stat">⚠️ ${tr("low")}<strong>${lows.length}</strong></div>
+<div class="stat">🛒 ${tr("shopping")}<strong>${lows.length+data.manual.length}</strong></div>
+<div class="stat">💰 ${tr("spent")}<strong style="font-size:17px">${money(spent())}</strong></div>
+</div>
+<div class="card" style="margin-top:14px">
+<button class="full" onclick="go('scan')">📷 ${tr("camera")}</button>
+<button class="full secondary" onclick="editor()">+ ${tr("add")}</button>
+</div>
+<div class="card">
+<h3>🛒 ${tr("auto")}</h3>
+${lows.length?lows.map(p=>`<div class="item">${esc(p.name)} — ${n(need(p))} ${esc(p.unit)}</div>`).join(""):"✓"}
+</div>
+<div class="card">
+<h3>🔮 ${tr("prediction")}</h3>
+${preds.length?preds.map(p=>`<div class="item">${esc(p.name)} — ${p.days} ${tr("days")}</div>`).join(""):`<p class="muted">Not enough usage history / Nog nie genoeg verbruiksgeskiedenis nie</p>`}
+</div>
+<div class="card">
+<h3>💰 ${tr("budget")}</h3>
+<p>${money(data.budget-spent())}</p>
+</div>`;
+}
+
+function stock(){
+let items=data.products.filter(p=>p.name.toLowerCase().includes(searchText.toLowerCase()));
+document.getElementById("app").innerHTML=`
+<div class="row"><h2>📦 ${tr("stock")}</h2><button onclick="editor()">+ ${tr("add")}</button></div>
+<input id="stockSearch" placeholder="${tr("search")}" value="${esc(searchText)}" oninput="searchStock(this.value)">
+<div class="card">
+${items.length?items.map(p=>`
+<div class="item">
+<div class="row">
+${p.image?`<img class="photo" src="${esc(p.image)}" onerror="this.style.display='none'">`:"📦"}
+<div style="flex:1">
+<b>${esc(p.name)}</b>
+<p class="muted">${esc(p.barcode||"")}</p>
+<span class="${low(p)?"warn":"good"}">${low(p)?tr("low"):"✓"}</span>
+</div></div>
+<p class="muted">Min ${n(p.min)} | Target ${n(p.target)} | ${money(p.price||0,p.currency||data.currency)}</p>
+<div class="row">
+<button class="secondary" onclick="adjust('${p.id}',-1)">−</button>
+<b>${n(p.qty)} ${esc(p.unit)}</b>
+<button class="secondary" onclick="adjust('${p.id}',1)">+</button>
+</div>
+<div class="actions">
+<button class="secondary" onclick="editor('${p.id}')">${tr("edit")}</button>
+<button class="danger" onclick="removeProduct('${p.id}')">${tr("delete")}</button>
+</div></div>`).join(""):`<p>${tr("empty")}</p>`}
+</div>`;
+}
+function searchStock(v){
+searchText=v;stock();
+let el=document.getElementById("stockSearch");
+el.focus();el.setSelectionRange(v.length,v.length);
+}
+function adjust(pid,sign){
+let p=data.products.find(x=>x.id===pid);
+if(!p)return;
+let v=prompt(sign<0?"Quantity used / Hoeveel gebruik":"Quantity added / Hoeveel bygevoeg","1");
+if(v===null)return;
+let q=Number(v);
+if(!Number.isFinite(q)||q<=0||(sign<0&&q>p.qty)){
+alert(tr("invalid"));return;
+}
+p.qty=Math.round((p.qty+sign*q)*100)/100;
+history(sign<0?"use":"add",p,q);
+save();render();
+}
+function removeProduct(pid){
+if(!confirm(tr("confirm")))return;
+data.products=data.products.filter(p=>p.id!==pid);
+save();render();
+}
+
+function editor(pid="",prefill=null){
+let original=data.products.find(x=>x.id===pid);
+let p=original||prefill||{};
+photoData=p.image||"";
+document.getElementById("app").innerHTML=`
+<div class="card">
+<h2>${pid?tr("edit"):tr("add")}</h2>
+<div id="photoPreview">${photoData?`<img class="preview" src="${esc(photoData)}">`:""}</div>
+<label>${tr("photo")}</label>
+<input type="file" accept="image/*" capture="environment" onchange="readPhoto(this)">
+<label>${tr("barcode")}</label>
+<input id="pBarcode" value="${esc(p.barcode||"")}">
+<label>${tr("name")}</label>
+<input id="pName" required value="${esc(p.name||"")}">
+<label>${tr("category")}</label>
+<select id="pCat">${T[data.lang].cats.map((c,i)=>`<option value="${i}" ${p.cat===i?"selected":""}>${c}</option>`).join("")}</select>
+<label>${tr("quantity")}</label>
+<input id="pQty" type="number" min="0" step="0.01" value="${p.qty??1}">
+<label>${tr("unit")}</label>
+<select id="pUnit">${["pcs","packs","kg","g","L","ml","rolls"].map(u=>`<option ${p.unit===u?"selected":""}>${u}</option>`).join("")}</select>
+<label>${tr("minimum")}</label>
+<input id="pMin" type="number" min="0" step="0.01" value="${p.min??1}">
+<label>${tr("target")}</label>
+<input id="pTarget" type="number" min="0.01" step="0.01" value="${p.target??3}">
+<label>${tr("price")} (${data.currency})</label>
+<input id="pPrice" type="number" min="0" step="0.01" value="${p.price??0}">
+<div class="actions">
+<button onclick="saveProduct('${pid}')">${tr("save")}</button>
+<button class="secondary" onclick="go('stock')">${tr("cancel")}</button>
+</div></div>`;
+}
+async function readPhoto(input){
+let file=input.files[0];if(!file)return;
+try{
+let img=new Image();
+let url=URL.createObjectURL(file);
+await new Promise((resolve,reject)=>{
+img.onload=resolve;img.onerror=reject;img.src=url;
+});
+let scale=Math.min(1,500/Math.max(img.width,img.height));
+let canvas=document.createElement("canvas");
+canvas.width=Math.round(img.width*scale);
+canvas.height=Math.round(img.height*scale);
+canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+photoData=canvas.toDataURL("image/jpeg",.65);
+URL.revokeObjectURL(url);
+document.getElementById("photoPreview").innerHTML=`<img class="preview" src="${photoData}">`;
+}catch(e){alert("Photo error / Fotofout");}
+}
+function saveProduct(pid){
+let name=document.getElementById("pName").value.trim();
+let qty=Number(document.getElementById("pQty").value);
+let min=Number(document.getElementById("pMin").value);
+let target=Number(document.getElementById("pTarget").value);
+let price=Number(document.getElementById("pPrice").value);
+let barcode=document.getElementById("pBarcode").value.trim();
+if(!name||![qty,min,target,price].every(Number.isFinite)||
+qty<0||min<0||target<=min||price<0){
+alert(tr("invalid"));return;
+}
+if(barcode&&data.products.some(p=>p.barcode===barcode&&p.id!==pid)){
+alert("Barcode already registered / Barcode reeds geregistreer");return;
+}
+let p={
+id:pid||uid(),name,barcode,
+cat:Number(document.getElementById("pCat").value),
+qty,unit:document.getElementById("pUnit").value,
+min,target,price,currency:data.currency,
+image:photoData
+};
+if(pid)data.products=data.products.map(x=>x.id===pid?p:x);
+else data.products.push(p);
+save();go("stock");
+}
+
+function scanPage(){
+document.getElementById("app").innerHTML=`
+<h2>📷 ${tr("scan")}</h2>
+<div class="card">
+<video id="video" autoplay muted playsinline style="display:none"></video>
+<button class="full" onclick="startCamera()">${tr("camera")}</button>
+<button class="full secondary" onclick="stopCamera()">${tr("stop")}</button>
+<label>${tr("barcode")}</label>
+<input id="scanCode" inputmode="numeric" placeholder="6001234567890">
+<button class="full" onclick="lookupCode()">${tr("search")}</button>
+</div>
+<div id="scanResult"></div>`;
+}
+async function startCamera(){
+if(!("BarcodeDetector" in window)){
+alert("Barcode detection unavailable. Enter barcode manually. / Tik die barcode self in.");
+return;
+}
+try{
+detector=new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e","code_128"]});
+stream=await navigator.mediaDevices.getUserMedia({
+video:{facingMode:{ideal:"environment"}},audio:false
+});
+let video=document.getElementById("video");
+video.srcObject=stream;video.style.display="block";
+await video.play();
+scanning=true;scanLoop();
+}catch(e){
+stopCamera();alert("Camera unavailable / Kamera nie beskikbaar nie");
+}
+}
+async function scanLoop(){
+if(!scanning)return;
+let video=document.getElementById("video");
+if(!video)return;
+try{
+if(video.readyState>=2){
+let codes=await detector.detect(video);
+if(codes.length){
+let code=codes[0].rawValue;
+stopCamera();
+document.getElementById("scanCode").value=code;
+await lookupCode();return;
+}
+}
+}catch(e){}
+if(scanning)setTimeout(scanLoop,300);
+}
+function stopCamera(){
+scanning=false;
+if(stream)stream.getTracks().forEach(t=>t.stop());
+stream=null;
+let v=document.getElementById("video");
+if(v){v.srcObject=null;v.style.display="none";}
+}
+async function lookupCode(){
+let code=document.getElementById("scanCode").value.trim();
+if(!/^[0-9]{8,14}$/.test(code)){
+alert("Invalid barcode / Ongeldige barcode");return;
+}
+stopCamera();
+let existing=data.products.find(p=>p.barcode===code);
+if(existing){
+found={...existing};
+prices=[];
+showResult(true);
+return;
+}
+document.getElementById("scanResult").innerHTML=
+'<div class="card">Searching / Soek tans...</div>';
+found={barcode:code,name:"",image:"",qty:1,
+unit:"packs",min:1,target:3,cat:0,price:0};
+for(let api of [OFF,BEAUTY]){
+try{
+let r=await fetch(api+encodeURIComponent(code)+".json");
+if(!r.ok)continue;
+let j=await r.json();
+if(j.status===1&&j.product){
+let p=j.product;
+found.name=p.product_name||p.product_name_en||p.brands||"";
+found.image=p.image_front_url||p.image_url||"";
+break;
+}
+}catch(e){}
+}
+prices=[];
+try{
+let r=await fetch(PRICE+"?product_code="+encodeURIComponent(code)+"&size=100");
+if(r.ok){
+let j=await r.json();
+prices=Array.isArray(j.items)?j.items:[];
+}
+}catch(e){}
+showResult(false);
+}
+function recentPrices(currency){
+let cutoff=Date.now()-30*86400000;
+return prices.filter(p=>{
+let date=new Date(p.date||p.created||"").getTime();
+return (p.currency||p.currency_code)===currency&&
+Number(p.price)>0&&date>=cutoff;
+});
+}
+function localPrices(currency){
+let code=found?.barcode;
+let cutoff=Date.now()-90*86400000;
+return data.history.filter(x=>
+x.type==="buy"&&x.barcode===code&&
+x.currency===currency&&x.qty>0&&x.cost>0&&
+new Date(x.date).getTime()>=cutoff
+).map(x=>x.cost/x.qty);
+}
+function average(){
+let online=recentPrices(data.currency).map(p=>Number(p.price));
+let own=localPrices(data.currency);
+let values=online.length?online:own;
+if(!values.length)return null;
+return {value:values.reduce((a,b)=>a+b,0)/values.length,
+count:values.length,source:online.length?"Open Prices":"Own history"};
+}
+function showResult(existing){
+let box=document.getElementById("scanResult");
+if(!box||!found)return;
+box.innerHTML=`
+<div class="card">
+<h3>📦 ${esc(found.name||tr("unknown"))}</h3>
+${found.image?`<img class="preview" src="${esc(found.image)}">`:""}
+<p class="muted">${esc(found.barcode)}</p>
+${existing?'<p class="good">✓ Already registered / Reeds geregistreer</p>':""}
+${!found.name?`<div class="notice">⚠️ ${tr("unknown")}. Add the product name and photo manually. / Voeg die naam en foto self by.</div>`:""}
+<label>${tr("country")}</label>
+<select onchange="setCurrency(this.value)">
+<option value="MZN" ${data.currency==="MZN"?"selected":""}>🇲🇿 Mozambique — MT</option>
+<option value="ZAR" ${data.currency==="ZAR"?"selected":""}>🇿🇦 South Africa — R</option>
+</select>
+<div id="averageBox"></div>
+<label>${tr("shopName")}</label>
+<input id="shopName" placeholder="Shoprite / Spar / Checkers">
+<label>${tr("shopPrice")}</label>
+<input id="shopPrice" type="number" min="0" step="0.01" oninput="compare()">
+<div id="verdict"></div>
+<div class="actions">
+<button onclick="registerScan()">${existing?tr("bought"):tr("add")}</button>
+<button class="secondary" onclick="compare()">${tr("compare")}</button>
+</div>
+</div>`;
+showAverage();
+}
+function setCurrency(v){
+data.currency=v;save();showResult(!!data.products.find(p=>p.barcode===found.barcode));
+}
+function showAverage(){
+let a=average();
+document.getElementById("averageBox").innerHTML=a?
+`<div class="card" style="background:#edf6ee">
+<b>${tr("average")}: ${money(a.value)}</b>
+<p class="muted">${a.count} observations · ${a.source}</p>
+</div>`:
+`<p class="notice">⚠️ ${tr("noData")}</p>`;
+}
+function compare(){
+let box=document.getElementById("verdict");
+let input=document.getElementById("shopPrice");
+if(!input.value){box.innerHTML="";return;}
+let price=Number(input.value),a=average();
+if(!Number.isFinite(price)||price<0)return;
+if(!a){
+box.innerHTML=`<p class="notice">${tr("noData")}. ${money(price)}</p>`;
+return;
+}
+let diff=(price-a.value)/a.value*100;
+let key=diff>10?"expensive":diff< -10?"good":"normal";
+let cls=diff>10?"bad":diff< -10?"good":"warn";
+box.innerHTML=`<div class="card">
+<h3 class="${cls}">${tr(key)}</h3>
+<p>${diff>=0?"+":""}${diff.toFixed(1)}% vs ${tr("average")}</p>
+</div>`;
+}
+function registerScan(){
+if(!found)return;
+let existing=data.products.find(p=>p.barcode===found.barcode);
+let input=document.getElementById("shopPrice");
+let price=input.value===""?null:Number(input.value);
+let shop=document.getElementById("shopName").value.trim();
+if(price!==null&&(!Number.isFinite(price)||price<0)){
+alert(tr("invalid"));return;
+}
+if(existing){
+let q=Number(prompt(tr("quantity"),"1"));
+if(!Number.isFinite(q)||q<=0)return;
+existing.qty+=q;
+if(price!==null){
+existing.price=price;existing.currency=data.currency;
+history("buy",existing,q,price*q,data.currency,shop);
+}else history("add",existing,q);
+save();go("stock");
+}else{
+let p={...found};
+p.price=price??average()?.value??0;
+p.currency=data.currency;
+editor("",p);
+}
+}
+
+function shopping(){
+let lows=data.products.filter(low);
+document.getElementById("app").innerHTML=`
+<h2>🛒 ${tr("shopping")}</h2>
+<div class="card">
+<h3>${tr("auto")}</h3>
+${lows.length?lows.map(p=>`
+<div class="item row">
+<div><b>${esc(p.name)}</b>
+<p class="muted">${n(need(p))} ${esc(p.unit)}</p></div>
+<button onclick="purchase('${p.id}')">${tr("bought")}</button>
+</div>`).join(""):"✓"}
+</div>
+<div class="card">
+<h3>${tr("manual")}</h3>
+<input id="extraName" placeholder="${tr("name")}">
+<input id="extraQty" type="number" min="0.01" step="0.01" value="1">
+<button onclick="addExtra()">${tr("add")}</button>
+${data.manual.map(m=>`
+<div class="item row">
+<span>${esc(m.name)} × ${n(m.qty)}</span>
+<div class="actions">
+<button onclick="buyExtra('${m.id}')">✓</button>
+<button class="danger" onclick="removeExtra('${m.id}')">×</button>
+</div></div>`).join("")}
+</div>`;
+}
+function addExtra(){
+let name=document.getElementById("extraName").value.trim();
+let qty=Number(document.getElementById("extraQty").value);
+if(!name||!Number.isFinite(qty)||qty<=0)return;
+data.manual.push({id:uid(),name,qty});
+save();render();
+}
+function removeExtra(id){
+data.manual=data.manual.filter(x=>x.id!==id);
+save();render();
+}
+function purchase(pid){
+let p=data.products.find(x=>x.id===pid);
+if(!p)return;
+let q=Number(prompt(tr("quantity"),String(need(p))));
+if(!Number.isFinite(q)||q<=0)return;
+let cost=prompt("Total cost / Totale koste",n(q*(p.price||0)));
+if(cost===null)return;
+cost=Number(cost);
+if(!Number.isFinite(cost)||cost<0)return;
+let shop=prompt(tr("shopName"),"")||"";
+p.qty+=q;
+p.price=cost/q;p.currency=data.currency;
+history("buy",p,q,cost,data.currency,shop);
+save();render();
+}
+function buyExtra(id){
+let m=data.manual.find(x=>x.id===id);
+if(!m)return;
+let cost=prompt("Total cost / Totale koste","0");
+if(cost===null)return;
+cost=Number(cost);
+if(!Number.isFinite(cost)||cost<0)return;
+history("buy",m,m.qty,cost,data.currency);
+data.manual=data.manual.filter(x=>x.id!==id);
+save();render();
+}
+
+function settings(){
+document.getElementById("app").innerHTML=`
+<h2>⚙️ ${tr("settings")}</h2>
+<div class="card">
+<label>${tr("language")}</label>
+<select onchange="data.lang=this.value;save();render()">
+<option value="af" ${data.lang==="af"?"selected":""}>Afrikaans</option>
+<option value="en" ${data.lang==="en"?"selected":""}>English</option>
+</select>
+<label>${tr("currency")}</label>
+<select onchange="data.currency=this.value;save();render()">
+<option value="MZN" ${data.currency==="MZN"?"selected":""}>MZN — Metical</option>
+<option value="ZAR" ${data.currency==="ZAR"?"selected":""}>ZAR — Rand</option>
+</select>
+<label>${tr("budget")}</label>
+<input type="number" min="0" step="0.01" value="${data.budget}" onchange="setBudget(this.value)">
+<p class="good">✓ Auto Save</p>
+</div>
+<div class="card">
+<h3>💾 Backup / Rugsteun</h3>
+<p class="notice">Data is saved on this browser, not automatically in the cloud. Make regular backups.</p>
+<button class="full" onclick="backup()">${tr("backup")}</button>
+<button class="full secondary" onclick="document.getElementById('restoreFile').click()">${tr("restore")}</button>
+<input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreBackup(this)">
+</div>
+<div class="card">
+<h3>My Home Stock V3</h3>
+<p class="muted">Product data: Open Food Facts / Open Beauty Facts.</p>
+<p class="muted">Public price data: Open Prices when available.</p>
+<p class="muted">Price comparisons are estimates. Always verify shelf prices.</p>
+</div>`;
+}
+function setBudget(v){
+let x=Number(v);
+if(!Number.isFinite(x)||x<0)return;
+data.budget=x;save();
+}
+function backup(){
+let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+let url=URL.createObjectURL(blob);
+let a=document.createElement("a");
+a.href=url;
+a.download="my-home-stock-"+new Date().toISOString().slice(0,10)+".json";
+a.click();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+async function restoreBackup(input){
+let file=input.files[0];if(!file)return;
+try{
+let obj=JSON.parse(await file.text());
+if(!Array.isArray(obj.products)||!Array.isArray(obj.history)||!Array.isArray(obj.manual))throw Error();
+if(!confirm(tr("confirm")))return;
+data=obj;save();render();
+}catch(e){alert("Invalid backup / Ongeldige rugsteun");}
+}
+render();
+</script>
+</body>
+</html>
+
