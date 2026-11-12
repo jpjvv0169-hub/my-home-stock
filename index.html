@@ -4,31 +4,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#ef4b98">
-<title>My Home Stock – Pink 3D</title>
+<meta name="theme-color" content="#ed4b93">
+<title>My Home Stock – Vir Louise ❤️</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(145deg,#ffd0e5,#fff2f8,#ffd1e8);color:#702448;min-height:100vh}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ color:#722747;
+ background:linear-gradient(140deg,#ffd2e6,#fff2f8,#ffd4e8);
+ min-height:100vh
+}
 button,input,select{font:inherit}
 button{cursor:pointer}
-header{text-align:center;padding:25px 12px;background:linear-gradient(135deg,#ffb5d5,#f477b1,#ffc2df);border-radius:0 0 30px 30px;box-shadow:0 8px 20px #b94b8050}
-header h1{font-size:30px;color:white;text-shadow:0 3px #bd276b,0 6px 9px #9e286a66;margin:6px}
-header p{font-weight:bold;color:#9c1c5a}
-main{max-width:750px;margin:auto;padding:15px 14px 115px}
-.card{background:linear-gradient(145deg,#fffaff,#ffd9eb);border:2px solid white;border-radius:25px;padding:17px;margin:14px 0;box-shadow:6px 9px 17px #b6477938,inset 3px 3px 5px white}
+header{
+ padding:25px 12px;
+ text-align:center;
+ background:linear-gradient(135deg,#ffb4d4,#f478b0,#ffc2dd);
+ border-radius:0 0 30px 30px;
+ box-shadow:0 8px 20px #a53c7044
+}
+header h1{
+ color:white;
+ font-size:30px;
+ margin:5px;
+ text-shadow:0 3px #c32b70,0 6px 9px #a3346c77
+}
+header p{font-weight:bold;color:#a31e60}
+main{max-width:750px;margin:auto;padding:15px 14px 110px}
+.card{
+ background:linear-gradient(145deg,#fffaff,#ffd9eb);
+ border:2px solid white;
+ border-radius:25px;
+ padding:17px;
+ margin:14px 0;
+ box-shadow:6px 9px 17px #b6477938,inset 3px 3px 5px white
+}
 .card h2{margin:0 0 14px;font-size:21px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tile{background:linear-gradient(145deg,#fffaff,#ffd1e7);border:2px solid white;border-radius:22px;padding:15px;box-shadow:4px 6px 12px #a83a7233}
+.tile{
+ background:linear-gradient(145deg,#fffaff,#ffd1e7);
+ border:2px solid white;
+ border-radius:22px;
+ padding:15px;
+ box-shadow:4px 6px 12px #a83a7233
+}
 .tile strong{display:block;color:#d91a73;font-size:28px;margin:8px 0}
 .tile small{font-weight:bold}
-.btn{border:2px solid #ffc0dd;border-radius:18px;padding:13px 15px;color:white;font-weight:bold;background:linear-gradient(#ff91c3,#f32688 55%,#c30d61);box-shadow:inset 0 3px 5px #fff9,0 5px 0 #aa185a,0 8px 12px #a3326c44;margin:5px 0}
+.btn{
+ border:2px solid #ffc0dd;
+ border-radius:18px;
+ padding:13px 15px;
+ color:white;
+ font-weight:bold;
+ background:linear-gradient(#ff91c3,#f32688 55%,#c30d61);
+ box-shadow:inset 0 3px 5px #fff9,0 5px 0 #aa185a,0 8px 12px #a3326c44;
+ margin:5px 0
+}
 .btn:active{transform:translateY(4px);box-shadow:0 1px 0 #aa185a}
-.secondary{background:linear-gradient(#fffaff,#ffc3df);color:#ad2163;box-shadow:inset 0 3px 5px white,0 4px 0 #df86b2}
+.secondary{
+ background:linear-gradient(#fffaff,#ffc3df);
+ color:#ad2163;
+ box-shadow:inset 0 3px 5px white,0 4px 0 #df86b2
+}
 .danger{background:linear-gradient(#ffb3c9,#ed668c)}
 .full{width:100%}
 .actions{display:flex;gap:9px;flex-wrap:wrap}
 .actions .btn{flex:1}
-input,select{width:100%;padding:13px;border:2px solid #eeb6d2;border-radius:15px;background:#fffaff;color:#692443}
+input,select{
+ width:100%;
+ padding:13px;
+ border:2px solid #eeb6d2;
+ border-radius:15px;
+ background:#fffaff;
+ color:#692443
+}
 label{display:block;margin:13px 0 5px;font-weight:bold;font-size:14px}
 .row{display:flex;gap:10px;align-items:center}
 .grow{flex:1;min-width:0}
@@ -40,49 +90,198 @@ label{display:block;margin:13px 0 5px;font-weight:bold;font-size:14px}
 .note{background:#fff1c8;border-radius:15px;padding:12px;margin:10px 0}
 .pic{width:78px;height:78px;object-fit:contain;border-radius:13px;background:white}
 .preview{max-width:180px;max-height:180px;border-radius:15px}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;z-index:10;background:linear-gradient(#fff5fc,#ffc2de);padding:9px 4px 13px;border-radius:22px 22px 0 0;box-shadow:0 -5px 18px #a3326b44}
-nav button{flex:1;min-width:0;border:0;background:transparent;color:#91395f;border-radius:14px;font-size:11px;font-weight:bold;padding:8px 1px}
+nav{
+ position:fixed;bottom:0;left:0;right:0;
+ display:flex;z-index:10;
+ background:linear-gradient(#fff5fc,#ffc2de);
+ padding:9px 4px 13px;
+ border-radius:22px 22px 0 0;
+ box-shadow:0 -5px 18px #a3326b44
+}
+nav button{
+ flex:1;min-width:0;border:0;
+ background:transparent;color:#91395f;
+ border-radius:14px;font-size:11px;
+ font-weight:bold;padding:8px 1px
+}
 nav span{display:block;font-size:24px}
 nav .active{background:linear-gradient(#ff93c3,#ed3189);color:white}
 video{width:100%;max-height:300px;border-radius:17px;background:#222}
 a{color:#bd1766}
 #status{text-align:center;font-size:12px;color:#ad3873}
+
+/* LOUISE SE SPESIALE WELKOMSKERM */
+#welcomeScreen{
+ position:fixed;inset:0;z-index:9999;
+ display:flex;align-items:center;justify-content:center;
+ padding:15px;
+ background:radial-gradient(circle at 50% 20%,#fff8fc,#ffd3e7 45%,#ee87b4);
+ overflow-y:auto
+}
+.welcomeCard{
+ position:relative;
+ width:min(100%,440px);
+ min-height:min(740px,94dvh);
+ border:3px solid #fff9;
+ border-radius:35px;
+ padding:34px 23px 25px;
+ text-align:center;
+ display:flex;flex-direction:column;
+ align-items:center;justify-content:space-between;
+ background:linear-gradient(155deg,#fff8fc,#ffdbeb 55%,#ffc0dd);
+ box-shadow:0 18px 55px #a42c6660,inset 0 3px 15px white;
+ overflow:hidden
+}
+.welcomeCard:before{
+ content:"✦ ✧ ✦ ✧ ✦";
+ position:absolute;top:12px;
+ color:#d5a15b;letter-spacing:12px;
+ font-size:20px;
+ animation:twinkle 2.5s infinite alternate
+}
+.welcomeTop{
+ margin-top:27px;
+ color:#b72b6c;
+ font-size:11px;font-weight:bold;
+ letter-spacing:1.2px
+}
+.welcomeHeart{
+ font-size:76px;
+ margin:12px 0;
+ filter:drop-shadow(0 7px 9px #b5326750);
+ animation:heartbeat 2.5s infinite
+}
+.welcomeTitle{
+ font-family:Georgia,serif;
+ font-size:clamp(32px,8vw,43px);
+ color:#a31c5b;
+ margin:0 0 12px;
+ text-shadow:0 2px white
+}
+.welcomeRose{
+ font-size:55px;
+ filter:drop-shadow(0 4px 5px #ba3c6e55)
+}
+.welcomeText{
+ font-family:Georgia,serif;
+ font-size:17px;line-height:1.6;
+ color:#823352;
+ max-width:320px;
+ margin:10px auto 18px
+}
+.welcomeButton{width:100%;font-size:16px}
+.welcomeCredit{
+ font-family:Georgia,serif;
+ font-style:italic;
+ color:#864561;
+ font-size:11px;
+ line-height:1.5;
+ margin:22px 0 0
+}
+.floatHeart{
+ position:absolute;
+ opacity:.45;
+ font-size:25px;
+ pointer-events:none;
+ animation:floatHeart 5s infinite
+}
+.floatHeart.one{top:20%;left:6%}
+.floatHeart.two{top:38%;right:7%;animation-delay:1s}
+.floatHeart.three{bottom:25%;left:9%;animation-delay:2s}
+@keyframes heartbeat{
+ 0%,100%{transform:scale(1)}
+ 50%{transform:scale(1.09)}
+}
+@keyframes twinkle{
+ from{opacity:.35}to{opacity:1}
+}
+@keyframes floatHeart{
+ 0%,100%{transform:translateY(0)}
+ 50%{transform:translateY(-18px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .welcomeHeart,.floatHeart,.welcomeCard:before{animation:none}
+}
 </style>
 </head>
 <body>
 
+<div id="welcomeScreen" role="dialog" aria-modal="true">
+ <div class="welcomeCard">
+  <span class="floatHeart one">💕</span>
+  <span class="floatHeart two">✨</span>
+  <span class="floatHeart three">💗</span>
+
+  <div class="welcomeTop">
+   ✦ 'N KLEIN GESKENK MET GROOT LIEFDE ✦
+  </div>
+
+  <div>
+   <div class="welcomeHeart">❤️</div>
+   <h1 class="welcomeTitle">Vir my Louise ❤️</h1>
+   <div class="welcomeRose">🌹🌸🌹</div>
+   <p class="welcomeText">
+    Welkom by jou eie klein wêreldjie.
+    <br><br>
+    Elke blommetjie, elke kleur en elke klein detail
+    is met liefde vir jou gekies.
+    <br><br>
+    Mag hierdie program jou lewe net 'n bietjie
+    makliker en mooier maak. ❤️
+   </p>
+  </div>
+
+  <div style="width:100%">
+   <button class="btn welcomeButton" onclick="closeWelcome()">
+    ❤️ OK – Maak my program oop ❤️
+   </button>
+   <p class="welcomeCredit">
+    Ontwerp deur Jp Jansen van Vuuren met die grootste liefde aan my vrou❤️
+   </p>
+  </div>
+ </div>
+</div>
+
 <header>
-<div style="font-size:43px">🏡🛒🌸</div>
-<h1>My Home Stock</h1>
-<p id="subtitle">💗 Louise se slim huisvoorraad 💗</p>
+ <div style="font-size:43px">🏡🛒🌸</div>
+ <h1>My Home Stock</h1>
+ <p id="subtitle">💗 Louise se slim huisvoorraad 💗</p>
 </header>
 
 <main>
-<div id="app"></div>
-<p id="status"></p>
+ <div id="app"></div>
+ <p id="status"></p>
 </main>
-
 <nav id="nav"></nav>
 
 <script>
 "use strict";
+
+function closeWelcome(){
+ document.getElementById("welcomeScreen").remove();
+}
 
 const KEY="my-home-stock-data-v1";
 const FOOD="https://world.openfoodfacts.org/api/v2/product/";
 const BEAUTY="https://world.openbeautyfacts.org/api/v2/product/";
 
 const fresh=()=>({
-lang:"af",currency:"ZAR",budget:0,
-products:[],manual:[],history:[],prices:[]
+ lang:"af",
+ currency:"ZAR",
+ budget:0,
+ products:[],
+ manual:[],
+ history:[],
+ prices:[]
 });
 
 let data;
 try{
-data=JSON.parse(localStorage.getItem(KEY))||fresh();
-if(!Array.isArray(data.products))throw Error();
-data.manual=Array.isArray(data.manual)?data.manual:[];
-data.history=Array.isArray(data.history)?data.history:[];
-data.prices=Array.isArray(data.prices)?data.prices:[];
+ data=JSON.parse(localStorage.getItem(KEY))||fresh();
+ if(!Array.isArray(data.products))throw Error();
+ data.manual=Array.isArray(data.manual)?data.manual:[];
+ data.history=Array.isArray(data.history)?data.history:[];
+ data.prices=Array.isArray(data.prices)?data.prices:[];
 }catch(e){data=fresh()}
 
 let page="home";
@@ -95,7 +294,9 @@ let currentProduct=null;
 
 const $=id=>document.getElementById(id);
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
 const money=(n,c=data.currency)=>(c==="MZN"?"MT ":"R ")+Number(n||0).toFixed(2);
 const low=p=>Number(p.qty)<=Number(p.min);
 const need=p=>Math.max(0,Number(p.target)-Number(p.qty));
@@ -104,503 +305,650 @@ const units=["packs","items","bottels","blikkies","kg","g","L","ml"];
 const tx=(af,en)=>data.lang==="en"?en:af;
 
 function save(){
-try{
-localStorage.setItem(KEY,JSON.stringify(data));
-$("status").textContent="✓ "+tx("Outomaties gestoor","Automatically saved");
-return true;
-}catch(e){
-alert(tx("Stoorplek vol. Maak 'n rugsteun.","Storage full. Make a backup."));
-return false;
-}
+ try{
+  localStorage.setItem(KEY,JSON.stringify(data));
+  $("status").textContent="✓ "+tx("Outomaties gestoor","Automatically saved");
+  return true;
+ }catch(e){
+  alert(tx("Stoorplek vol. Maak 'n rugsteun.","Storage full. Make a backup."));
+  return false;
+ }
 }
 
 function record(type,p,qty,total=0){
-data.history.push({
-id:uid(),pid:p.id,name:p.name,
-barcode:p.barcode||"",type,qty,total,
-currency:data.currency,date:new Date().toISOString()
-});
+ data.history.push({
+  id:uid(),
+  pid:p.id,
+  name:p.name,
+  barcode:p.barcode||"",
+  type,qty,total,
+  currency:data.currency,
+  date:new Date().toISOString()
+ });
 }
 
 function go(p){
-stopCamera();
-page=p;
-render();
-window.scrollTo(0,0);
+ stopCamera();
+ page=p;
+ render();
+ window.scrollTo(0,0);
 }
 
 function render(){
-$("subtitle").textContent=tx("💗 Louise se slim huisvoorraad 💗","💗 Louise's smart home inventory 💗");
-const tabs=[
-["home","🏠",tx("Tuis","Home")],
-["stock","📦",tx("Voorraad","Stock")],
-["scan","📸",tx("Skandeer","Scan")],
-["shopping","🛒",tx("Inkopies","Shopping")],
-["settings","⚙️",tx("Instellings","Settings")]
-];
-$("nav").innerHTML=tabs.map(t=>`<button class="${page===t[0]?"active":""}" onclick="go('${t[0]}')"><span>${t[1]}</span>${t[2]}</button>`).join("");
-({home,stock,scan:scanPage,shopping,settings})[page]();
+ $("subtitle").textContent=tx(
+  "💗 Louise se slim huisvoorraad 💗",
+  "💗 Louise's smart home inventory 💗"
+ );
+ const tabs=[
+  ["home","🏠",tx("Tuis","Home")],
+  ["stock","📦",tx("Voorraad","Stock")],
+  ["scan","📸",tx("Skandeer","Scan")],
+  ["shopping","🛒",tx("Inkopies","Shopping")],
+  ["settings","⚙️",tx("Instellings","Settings")]
+ ];
+ $("nav").innerHTML=tabs.map(t=>`
+  <button class="${page===t[0]?"active":""}" onclick="go('${t[0]}')">
+   <span>${t[1]}</span>${t[2]}
+  </button>
+ `).join("");
+ ({home,stock,scan:scanPage,shopping,settings})[page]();
 }
 
 function home(){
-let month=new Date().toISOString().slice(0,7);
-let spent=data.history.filter(h=>h.type==="buy"&&h.currency===data.currency&&String(h.date).startsWith(month)).reduce((a,h)=>a+Number(h.total||0),0);
-let needed=data.products.filter(p=>need(p)>0).length;
-$("app").innerHTML=`
-<div class="grid">
-<div class="tile"><div style="font-size:29px">📦</div><strong>${data.products.length}</strong><small>${tx("Produkte","Products")}</small></div>
-<div class="tile"><div style="font-size:29px">⚠️</div><strong>${data.products.filter(low).length}</strong><small>${tx("Min voorraad","Low stock")}</small></div>
-<div class="tile"><div style="font-size:29px">🛒</div><strong>${needed+data.manual.length}</strong><small>${tx("Inkopies","Shopping")}</small></div>
-<div class="tile"><div style="font-size:29px">💰</div><strong style="font-size:20px">${money(spent)}</strong><small>${tx("Hierdie maand bestee","Spent this month")}</small></div>
-</div>
-<section class="card">
-<h2>🌸 ${tx("Welkom by jou kombuis","Welcome to your kitchen")}</h2>
-<p>${tx("Hou jou huisvoorraad maklik op datum.","Keep your home inventory organized.")}</p>
-<div class="actions">
-<button class="btn" onclick="go('scan')">📸 ${tx("Maak kamera oop","Open camera")}</button>
-<button class="btn secondary" onclick="editor('')">➕ ${tx("Voeg produk by","Add product")}</button>
-</div>
-</section>
-<section class="card">
-<h2>🛒 ${tx("Outomatiese inkopielys","Automatic shopping list")}</h2>
-<p>${needed} ${tx("produkte benodig aanvulling","products need restocking")}</p>
-<button class="btn full" onclick="go('shopping')">${tx("Bekyk inkopielys","View shopping list")}</button>
-</section>
-<section class="card">
-<h2>💗 ${tx("Slim voorraadbeheer","Smart stock management")}</h2>
-<p>${tx("Skandeer 'n produk om voorraad by te voeg of te gebruik.","Scan a product to add or use stock.")}</p>
-<button class="btn full" onclick="go('scan')">📸 ${tx("Skandeer nou","Scan now")}</button>
-</section>`;
+ const month=new Date().toISOString().slice(0,7);
+ const spent=data.history
+  .filter(h=>h.type==="buy"&&h.currency===data.currency&&String(h.date).startsWith(month))
+  .reduce((a,h)=>a+Number(h.total||0),0);
+ const needed=data.products.filter(p=>need(p)>0).length;
+
+ $("app").innerHTML=`
+ <div class="grid">
+  <div class="tile">📦<strong>${data.products.length}</strong>
+   <small>${tx("Produkte","Products")}</small></div>
+  <div class="tile">⚠️<strong>${data.products.filter(low).length}</strong>
+   <small>${tx("Min voorraad","Low stock")}</small></div>
+  <div class="tile">🛒<strong>${needed+data.manual.length}</strong>
+   <small>${tx("Inkopies","Shopping")}</small></div>
+  <div class="tile">💰<strong style="font-size:20px">${money(spent)}</strong>
+   <small>${tx("Hierdie maand bestee","Spent this month")}</small></div>
+ </div>
+ <section class="card">
+  <h2>🌸 ${tx("Welkom by jou kombuis","Welcome to your kitchen")}</h2>
+  <p>${tx("Hou jou huisvoorraad maklik op datum.","Keep your home inventory organized.")}</p>
+  <div class="actions">
+   <button class="btn" onclick="go('scan')">📸 ${tx("Skandeer","Scan")}</button>
+   <button class="btn secondary" onclick="editor('')">➕ ${tx("Voeg produk by","Add product")}</button>
+  </div>
+ </section>
+ <section class="card">
+  <h2>🛒 ${tx("Outomatiese inkopielys","Automatic shopping list")}</h2>
+  <p>${needed} ${tx("produkte benodig aanvulling","products need restocking")}</p>
+  <button class="btn full" onclick="go('shopping')">
+   ${tx("Bekyk inkopielys","View shopping list")}
+  </button>
+ </section>
+ <section class="card">
+  <h2>💗 ${tx("Slim voorraadbeheer","Smart stock management")}</h2>
+  <p>${tx("Skandeer om voorraad by te voeg of te gebruik.","Scan to add or use stock.")}</p>
+  <button class="btn full" onclick="go('scan')">📸 ${tx("Skandeer nou","Scan now")}</button>
+ </section>`;
 }
 
 function stock(){
-$("app").innerHTML=`
-<section class="card">
-<h2>📦 ${tx("My voorraad","My stock")}</h2>
-<button class="btn full" onclick="editor('')">➕ ${tx("Voeg produk by","Add product")}</button>
-<input id="filter" placeholder="${tx("Soek produk of barcode","Search product or barcode")}" oninput="stockList()">
-<div id="stockList"></div>
-</section>`;
-stockList();
+ $("app").innerHTML=`
+ <section class="card">
+  <h2>📦 ${tx("My voorraad","My stock")}</h2>
+  <button class="btn full" onclick="editor('')">➕ ${tx("Voeg produk by","Add product")}</button>
+  <input id="filter" placeholder="${tx("Soek produk of barcode","Search product or barcode")}" oninput="stockList()">
+  <div id="stockList"></div>
+ </section>`;
+ stockList();
 }
 
 function stockList(){
-const q=($("filter")?.value||"").toLowerCase();
-const arr=data.products.filter(p=>(p.name+" "+(p.barcode||"")).toLowerCase().includes(q));
-$("stockList").innerHTML=arr.length?arr.map(p=>`
-<div class="item">
-<div class="row">
-${p.image?`<img class="pic" src="${esc(p.image)}">`:`<div style="font-size:40px">📦</div>`}
-<div class="grow">
-<b>${esc(p.name)}</b><br>
-<span class="muted">${esc(p.barcode||"")}</span><br>
-<strong class="${low(p)?"warn":"good"}">${Number(p.qty)||0} ${esc(p.unit||"items")}</strong>
-</div>
-</div>
-<div class="actions">
-<button class="btn secondary" onclick="manage('${p.id}')">➕➖ ${tx("Bestuur","Manage")}</button>
-<button class="btn" onclick="editor('${p.id}')">✏️ ${tx("Wysig","Edit")}</button>
-</div>
-</div>`).join(""):`<p>${tx("Geen produkte gevind nie.","No products found.")}</p>`;
+ const q=($("filter")?.value||"").toLowerCase();
+ const arr=data.products.filter(p=>
+  (p.name+" "+(p.barcode||"")).toLowerCase().includes(q)
+ );
+ $("stockList").innerHTML=arr.length?arr.map(p=>`
+ <div class="item">
+  <div class="row">
+   ${p.image?`<img class="pic" src="${esc(p.image)}">`:`<div style="font-size:40px">📦</div>`}
+   <div class="grow">
+    <b>${esc(p.name)}</b><br>
+    <span class="muted">${esc(p.barcode||"")}</span><br>
+    <strong class="${low(p)?"warn":"good"}">${Number(p.qty)||0} ${esc(p.unit||"items")}</strong>
+   </div>
+  </div>
+  <div class="actions">
+   <button class="btn secondary" onclick="manage('${p.id}')">
+    ➕➖ ${tx("Bestuur","Manage")}
+   </button>
+   <button class="btn" onclick="editor('${p.id}')">
+    ✏️ ${tx("Wysig","Edit")}
+   </button>
+  </div>
+ </div>`).join(""):`<p>${tx("Geen produkte gevind nie.","No products found.")}</p>`;
 }
 
 function manage(id){
-const p=data.products.find(x=>x.id===id);
-if(!p)return;
-currentProduct=p;
-page="stock";
-render();
-showManage();
+ const p=data.products.find(x=>x.id===id);
+ if(!p)return;
+ currentProduct=p;
+ page="stock";
+ render();
+ showManage();
 }
 
 function showManage(){
-const p=currentProduct;
-$("app").innerHTML=`
-<section class="card">
-<h2>📦 ${esc(p.name)}</h2>
-${p.image?`<img class="preview" src="${esc(p.image)}">`:""}
-<p class="muted">Barcode: ${esc(p.barcode||"")}</p>
-<div class="tile">
-<small>${tx("Huidige voorraad","Current stock")}</small>
-<strong>${Number(p.qty)} ${esc(p.unit||"items")}</strong>
-</div>
-<h2 style="margin-top:20px">${tx("Bestuur voorraad","Manage stock")}</h2>
-<label>${tx("Wat wil jy doen?","What would you like to do?")}</label>
-<select id="action" onchange="previewStock()">
-<option value="add">➕ ${tx("Voeg voorraad by","Add stock")}</option>
-<option value="use">➖ ${tx("Gebruik voorraad","Use stock")}</option>
-</select>
-<label>${tx("Hoeveelheid","Quantity")}</label>
-<input id="amount" type="number" min="0.01" step="any" value="1" oninput="previewStock()">
-<div class="note" id="preview"></div>
-<button class="btn full" onclick="confirmStock()">✓ ${tx("Bevestig en stoor","Confirm and save")}</button>
-<button class="btn secondary full" onclick="go('stock')">${tx("Terug","Back")}</button>
-</section>`;
-previewStock();
+ const p=currentProduct;
+ $("app").innerHTML=`
+ <section class="card">
+  <h2>📦 ${esc(p.name)}</h2>
+  ${p.image?`<img class="preview" src="${esc(p.image)}">`:""}
+  <p class="muted">Barcode: ${esc(p.barcode||"")}</p>
+  <div class="tile">
+   <small>${tx("Huidige voorraad","Current stock")}</small>
+   <strong>${Number(p.qty)} ${esc(p.unit||"items")}</strong>
+  </div>
+  <h2 style="margin-top:20px">${tx("Bestuur voorraad","Manage stock")}</h2>
+  <label>${tx("Wat wil jy doen?","What would you like to do?")}</label>
+  <select id="action" onchange="previewStock()">
+   <option value="add">➕ ${tx("Voeg voorraad by","Add stock")}</option>
+   <option value="use">➖ ${tx("Gebruik voorraad","Use stock")}</option>
+  </select>
+  <label>${tx("Hoeveelheid","Quantity")}</label>
+  <input id="amount" type="number" min="0.01" step="any" value="1" oninput="previewStock()">
+  <div class="note" id="preview"></div>
+  <button class="btn full" onclick="confirmStock()">
+   ✓ ${tx("Bevestig en stoor","Confirm and save")}
+  </button>
+  <button class="btn secondary full" onclick="go('stock')">
+   ${tx("Terug","Back")}
+  </button>
+ </section>`;
+ previewStock();
 }
 
 function previewStock(){
-const p=currentProduct;
-const raw=$("amount").value;
-const qty=Number(raw);
-const action=$("action").value;
-const valid=raw.trim()!==""&&Number.isFinite(qty)&&qty>0&&(action!=="use"||qty<=Number(p.qty));
-$("preview").innerHTML=valid
-?`<b>${tx("Nuwe voorraad ná bevestiging","New stock after confirmation")}: ${(Number(p.qty)+(action==="add"?qty:-qty)).toFixed(2)} ${esc(p.unit||"items")}</b>`
-:`<span class="warn">${tx("Ongeldige hoeveelheid of onvoldoende voorraad.","Invalid quantity or insufficient stock.")}</span>`;
+ const p=currentProduct;
+ const raw=$("amount").value;
+ const qty=Number(raw);
+ const action=$("action").value;
+ const valid=raw.trim()!==""&&Number.isFinite(qty)&&qty>0
+  &&(action!=="use"||qty<=Number(p.qty));
+ $("preview").innerHTML=valid
+  ?`<b>${tx("Nuwe voorraad ná bevestiging","New stock after confirmation")}:
+    ${(Number(p.qty)+(action==="add"?qty:-qty)).toFixed(2)}
+    ${esc(p.unit||"items")}</b>`
+  :`<span class="warn">${tx("Ongeldige hoeveelheid of onvoldoende voorraad.","Invalid quantity or insufficient stock.")}</span>`;
 }
 
 function confirmStock(){
-const p=currentProduct;
-const raw=$("amount").value;
-const qty=Number(raw);
-const action=$("action").value;
-if(raw.trim()===""||!Number.isFinite(qty)||qty<=0||(action==="use"&&qty>Number(p.qty))){
-alert(tx("Ongeldige hoeveelheid of onvoldoende voorraad.","Invalid quantity or insufficient stock."));
-return;
-}
-const next=Math.round((Number(p.qty)+(action==="add"?qty:-qty))*100)/100;
-if(!confirm(`${p.name}\n${tx("Huidige voorraad","Current stock")}: ${p.qty}\n${action==="add"?"+":"-"} ${qty}\n${tx("Nuwe voorraad","New stock")}: ${next}\n\n${tx("Bevestig verandering?","Confirm change?")}`))return;
-p.qty=next;
-record(action==="add"?"add":"use",p,qty);
-if(save()){
-currentProduct=p;
-showManage();
-}
+ const p=currentProduct;
+ const raw=$("amount").value;
+ const qty=Number(raw);
+ const action=$("action").value;
+ if(raw.trim()===""||!Number.isFinite(qty)||qty<=0
+    ||(action==="use"&&qty>Number(p.qty))){
+  alert(tx("Ongeldige hoeveelheid of onvoldoende voorraad.","Invalid quantity or insufficient stock."));
+  return;
+ }
+ const next=Math.round((Number(p.qty)+(action==="add"?qty:-qty))*100)/100;
+ if(!confirm(
+  `${p.name}\n${tx("Huidige voorraad","Current stock")}: ${p.qty}\n`+
+  `${action==="add"?"+":"-"} ${qty}\n`+
+  `${tx("Nuwe voorraad","New stock")}: ${next}\n\n`+
+  `${tx("Bevestig verandering?","Confirm change?")}`
+ ))return;
+ p.qty=next;
+ record(action==="add"?"add":"use",p,qty);
+ if(save())showManage();
 }
 
 function editor(id,seed={}){
-const p=data.products.find(x=>x.id===id)||seed;
-photoData=p.image||"";
-page="stock";
-render();
-$("app").innerHTML=`
-<section class="card">
-<h2>🌷 ${id?tx("Wysig produk","Edit product"):tx("Nuwe produk","New product")}</h2>
-<label>${tx("Produknaam","Product name")}</label>
-<input id="pName" value="${esc(p.name||"")}">
-<label>Barcode</label>
-<input id="pBarcode" value="${esc(p.barcode||"")}">
-<label>${tx("Kategorie","Category")}</label>
-<select id="pCat">${cats.map((c,i)=>`<option value="${i}" ${Number(p.cat||0)===i?"selected":""}>${c}</option>`).join("")}</select>
-<label>${tx("Hoeveelheid","Quantity")}</label>
-<input id="pQty" type="number" min="0" step="any" value="${p.qty??1}">
-<label>${tx("Eenheid","Unit")}</label>
-<select id="pUnit">${units.map(u=>`<option ${p.unit===u?"selected":""}>${u}</option>`).join("")}</select>
-<label>${tx("Minimum voorraad","Minimum stock")}</label>
-<input id="pMin" type="number" min="0" step="any" value="${p.min??1}">
-<label>${tx("Teikenvoorraad","Target stock")}</label>
-<input id="pTarget" type="number" min="0" step="any" value="${p.target??2}">
-<label>${tx("Prys per eenheid","Price per unit")} (${data.currency})</label>
-<input id="pPrice" type="number" min="0" step="any" value="${p.price??0}">
-<label>${tx("Produkfoto","Product photo")}</label>
-<input type="file" accept="image/*" onchange="readPhoto(this)">
-<div id="photoBox">${photoData?`<img class="preview" src="${esc(photoData)}">`:""}</div>
-<button class="btn full" onclick="saveProduct('${id}')">💾 ${tx("Stoor produk","Save product")}</button>
-${id?`<button class="btn danger full" onclick="deleteProduct('${id}')">🗑️ ${tx("Verwyder produk","Delete product")}</button>`:""}
-<button class="btn secondary full" onclick="go('stock')">${tx("Kanselleer","Cancel")}</button>
-</section>`;
+ const p=data.products.find(x=>x.id===id)||seed;
+ photoData=p.image||"";
+ page="stock";
+ render();
+ $("app").innerHTML=`
+ <section class="card">
+  <h2>🌷 ${id?tx("Wysig produk","Edit product"):tx("Nuwe produk","New product")}</h2>
+  <label>${tx("Produknaam","Product name")}</label>
+  <input id="pName" value="${esc(p.name||"")}">
+  <label>Barcode</label>
+  <input id="pBarcode" value="${esc(p.barcode||"")}">
+  <label>${tx("Kategorie","Category")}</label>
+  <select id="pCat">
+   ${cats.map((c,i)=>`<option value="${i}" ${Number(p.cat||0)===i?"selected":""}>${c}</option>`).join("")}
+  </select>
+  <label>${tx("Hoeveelheid","Quantity")}</label>
+  <input id="pQty" type="number" min="0" step="any" value="${p.qty??1}">
+  <label>${tx("Eenheid","Unit")}</label>
+  <select id="pUnit">
+   ${units.map(u=>`<option ${p.unit===u?"selected":""}>${u}</option>`).join("")}
+  </select>
+  <label>${tx("Minimum voorraad","Minimum stock")}</label>
+  <input id="pMin" type="number" min="0" step="any" value="${p.min??1}">
+  <label>${tx("Teikenvoorraad","Target stock")}</label>
+  <input id="pTarget" type="number" min="0" step="any" value="${p.target??2}">
+  <label>${tx("Prys per eenheid","Price per unit")} (${data.currency})</label>
+  <input id="pPrice" type="number" min="0" step="any" value="${p.price??0}">
+  <label>${tx("Produkfoto","Product photo")}</label>
+  <input type="file" accept="image/*" onchange="readPhoto(this)">
+  <div id="photoBox">${photoData?`<img class="preview" src="${esc(photoData)}">`:""}</div>
+  <button class="btn full" onclick="saveProduct('${id}')">
+   💾 ${tx("Stoor produk","Save product")}
+  </button>
+  ${id?`<button class="btn danger full" onclick="deleteProduct('${id}')">
+   🗑️ ${tx("Verwyder produk","Delete product")}
+  </button>`:""}
+  <button class="btn secondary full" onclick="go('stock')">
+   ${tx("Kanselleer","Cancel")}
+  </button>
+ </section>`;
 }
 
 function readPhoto(input){
-const file=input.files?.[0];
-if(!file)return;
-const r=new FileReader();
-r.onload=()=>{
-const img=new Image();
-img.onload=()=>{
-const c=document.createElement("canvas");
-const scale=Math.min(1,550/Math.max(img.width,img.height));
-c.width=Math.max(1,Math.round(img.width*scale));
-c.height=Math.max(1,Math.round(img.height*scale));
-c.getContext("2d").drawImage(img,0,0,c.width,c.height);
-photoData=c.toDataURL("image/jpeg",0.72);
-$("photoBox").innerHTML=`<img class="preview" src="${photoData}">`;
-};
-img.src=r.result;
-};
-r.readAsDataURL(file);
+ const file=input.files?.[0];
+ if(!file)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  const img=new Image();
+  img.onload=()=>{
+   const c=document.createElement("canvas");
+   const scale=Math.min(1,550/Math.max(img.width,img.height));
+   c.width=Math.max(1,Math.round(img.width*scale));
+   c.height=Math.max(1,Math.round(img.height*scale));
+   c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+   photoData=c.toDataURL("image/jpeg",0.72);
+   $("photoBox").innerHTML=`<img class="preview" src="${photoData}">`;
+  };
+  img.src=r.result;
+ };
+ r.readAsDataURL(file);
 }
 
 function saveProduct(id){
-const name=$("pName").value.trim();
-const barcode=$("pBarcode").value.trim();
-const fields=["pQty","pMin","pTarget","pPrice"];
-if(fields.some(k=>$(k).value.trim()==="")){
-alert(tx("Vul al die waardes in.","Complete all values."));
-return;
-}
-const qty=Number($("pQty").value);
-const min=Number($("pMin").value);
-const target=Number($("pTarget").value);
-const price=Number($("pPrice").value);
-if(!name||[qty,min,target,price].some(v=>!Number.isFinite(v)||v<0)||target<min){
-alert(tx("Kontroleer die waardes. Teiken mag dieselfde as minimum wees.","Check values. Target may equal minimum."));
-return;
-}
-if(barcode&&data.products.some(p=>p.barcode===barcode&&p.id!==id)){
-alert(tx("Barcode bestaan reeds.","Barcode already exists."));
-return;
-}
-const old=data.products.find(p=>p.id===id);
-const p={
-...(old||{}),id:id||uid(),name,barcode,
-cat:Number($("pCat").value),qty,
-unit:$("pUnit").value,min,target,price,
-currency:data.currency,image:photoData
-};
-if(old)data.products=data.products.map(x=>x.id===id?p:x);
-else data.products.push(p);
-if(save())go("stock");
+ const name=$("pName").value.trim();
+ const barcode=$("pBarcode").value.trim();
+ const fields=["pQty","pMin","pTarget","pPrice"];
+ if(fields.some(k=>$(k).value.trim()==="")){
+  alert(tx("Vul al die waardes in.","Complete all values."));
+  return;
+ }
+ const qty=Number($("pQty").value);
+ const min=Number($("pMin").value);
+ const target=Number($("pTarget").value);
+ const price=Number($("pPrice").value);
+ if(!name||[qty,min,target,price].some(v=>!Number.isFinite(v)||v<0)||target<min){
+  alert(tx("Kontroleer die waardes.","Check the values."));
+  return;
+ }
+ if(barcode&&data.products.some(p=>p.barcode===barcode&&p.id!==id)){
+  alert(tx("Barcode bestaan reeds.","Barcode already exists."));
+  return;
+ }
+ const old=data.products.find(p=>p.id===id);
+ const p={
+  ...(old||{}),id:id||uid(),name,barcode,
+  cat:Number($("pCat").value),qty,
+  unit:$("pUnit").value,min,target,price,
+  currency:data.currency,image:photoData
+ };
+ if(old)data.products=data.products.map(x=>x.id===id?p:x);
+ else data.products.push(p);
+ if(save())go("stock");
 }
 
 function deleteProduct(id){
-if(!confirm(tx("Verwyder hierdie produk?","Delete this product?")))return;
-data.products=data.products.filter(p=>p.id!==id);
-save();go("stock");
+ if(!confirm(tx("Verwyder hierdie produk?","Delete this product?")))return;
+ data.products=data.products.filter(p=>p.id!==id);
+ save();go("stock");
 }
 
 function scanPage(){
-$("app").innerHTML=`
-<section class="card">
-<h2>📸 ${tx("Skandeer produk","Scan product")}</h2>
-<div class="actions">
-<button class="btn" onclick="startCamera()">📷 ${tx("Maak kamera oop","Open camera")}</button>
-<button class="btn secondary" onclick="stopCamera()">⏹️ ${tx("Stop kamera","Stop camera")}</button>
-</div>
-<video id="video" autoplay muted playsinline></video>
-<p class="muted">${tx("Gebruik Chrome en gee kameratoestemming.","Use Chrome and allow camera access.")}</p>
-<label>Barcode</label>
-<input id="scanCode" inputmode="numeric" placeholder="6001234567890">
-<button class="btn full" onclick="lookupCode()">🔎 ${tx("Soek produk","Find product")}</button>
-<div id="scanResult"></div>
-</section>`;
+ $("app").innerHTML=`
+ <section class="card">
+  <h2>📸 ${tx("Skandeer produk","Scan product")}</h2>
+  <div class="actions">
+   <button class="btn" onclick="startCamera()">📷 ${tx("Maak kamera oop","Open camera")}</button>
+   <button class="btn secondary" onclick="stopCamera()">⏹️ ${tx("Stop kamera","Stop camera")}</button>
+  </div>
+  <video id="video" autoplay muted playsinline></video>
+  <p class="muted">${tx("Gebruik Chrome en gee kameratoestemming.","Use Chrome and allow camera access.")}</p>
+  <label>Barcode</label>
+  <input id="scanCode" inputmode="numeric" placeholder="6001234567890">
+  <button class="btn full" onclick="lookupCode()">
+   🔎 ${tx("Soek produk","Find product")}
+  </button>
+  <div id="scanResult"></div>
+ </section>`;
 }
 
 async function startCamera(){
-if(!navigator.mediaDevices?.getUserMedia){
-alert(tx("Kamera word nie ondersteun nie.","Camera not supported."));
-return;
-}
-if(!("BarcodeDetector" in window)){
-alert(tx("Outomatiese skandering word nie deur hierdie blaaier ondersteun nie. Tik die barcode self.","Automatic scanning is not supported. Enter barcode manually."));
-return;
-}
-try{
-stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}}});
-$("video").srcObject=stream;
-const detector=new BarcodeDetector({formats:["ean_13","ean_8","upc_a","upc_e","code_128"]});
-scanning=true;
-const tick=async()=>{
-if(!scanning)return;
-try{
-if($("video")?.readyState>=2){
-const codes=await detector.detect($("video"));
-if(codes.length){
-const code=codes[0].rawValue;
-stopCamera();
-$("scanCode").value=code;
-lookupCode();
-return;
-}
-}
-}catch(e){}
-scanTimer=setTimeout(tick,350);
-};
-tick();
-}catch(e){
-alert(tx("Kan nie kamera oopmaak nie.","Cannot open camera."));
-}
+ if(!navigator.mediaDevices?.getUserMedia){
+  alert(tx("Kamera word nie ondersteun nie.","Camera not supported."));
+  return;
+ }
+ if(!("BarcodeDetector" in window)){
+  alert(tx(
+   "Outomatiese skandering word nie ondersteun nie. Tik die barcode self.",
+   "Automatic scanning is not supported. Enter barcode manually."
+  ));
+  return;
+ }
+ try{
+  stream=await navigator.mediaDevices.getUserMedia({
+   video:{facingMode:{ideal:"environment"}}
+  });
+  $("video").srcObject=stream;
+  const detector=new BarcodeDetector({
+   formats:["ean_13","ean_8","upc_a","upc_e","code_128"]
+  });
+  scanning=true;
+  const tick=async()=>{
+   if(!scanning)return;
+   try{
+    if($("video")?.readyState>=2){
+     const codes=await detector.detect($("video"));
+     if(codes.length){
+      const code=codes[0].rawValue;
+      stopCamera();
+      $("scanCode").value=code;
+      lookupCode();
+      return;
+     }
+    }
+   }catch(e){}
+   scanTimer=setTimeout(tick,350);
+  };
+  tick();
+ }catch(e){
+  alert(tx("Kan nie kamera oopmaak nie.","Cannot open camera."));
+ }
 }
 
 function stopCamera(){
-scanning=false;
-clearTimeout(scanTimer);
-if(stream){
-stream.getTracks().forEach(t=>t.stop());
-stream=null;
-}
+ scanning=false;
+ clearTimeout(scanTimer);
+ if(stream){
+  stream.getTracks().forEach(t=>t.stop());
+  stream=null;
+ }
 }
 
 async function lookupCode(){
-const code=$("scanCode").value.trim();
-if(!/^[0-9]{8,14}$/.test(code)){
-alert(tx("Voer 'n geldige barcode in.","Enter a valid barcode."));
-return;
-}
-stopCamera();
-const existing=data.products.find(p=>p.barcode===code);
-if(existing){
-found=existing;
-showFound(true);
-return;
-}
-$("scanResult").innerHTML=`<div class="card">🔎 ${tx("Soek tans...","Searching...")}</div>`;
-found={barcode:code,name:"",image:"",qty:1,min:1,target:2,price:0,unit:"packs",cat:0};
-for(const base of [FOOD,BEAUTY]){
-try{
-const r=await fetch(base+encodeURIComponent(code)+".json");
-if(!r.ok)continue;
-const j=await r.json();
-if(j.status===1&&j.product){
-const p=j.product;
-found.name=p.product_name||p.product_name_en||p.brands||"";
-found.image=p.image_front_url||p.image_url||"";
-break;
-}
-}catch(e){}
-}
-showFound(false);
+ const code=$("scanCode").value.trim();
+ if(!/^[0-9]{8,14}$/.test(code)){
+  alert(tx("Voer 'n geldige barcode in.","Enter a valid barcode."));
+  return;
+ }
+ stopCamera();
+ const existing=data.products.find(p=>p.barcode===code);
+ if(existing){
+  found=existing;
+  showFound(true);
+  return;
+ }
+ $("scanResult").innerHTML=`<div class="card">🔎 ${tx("Soek tans...","Searching...")}</div>`;
+ found={
+  barcode:code,name:"",image:"",
+  qty:1,min:1,target:2,price:0,unit:"packs",cat:0
+ };
+ for(const base of [FOOD,BEAUTY]){
+  try{
+   const r=await fetch(base+encodeURIComponent(code)+".json");
+   if(!r.ok)continue;
+   const j=await r.json();
+   if(j.status===1&&j.product){
+    const p=j.product;
+    found.name=p.product_name||p.product_name_en||p.brands||"";
+    found.image=p.image_front_url||p.image_url||"";
+    break;
+   }
+  }catch(e){}
+ }
+ showFound(false);
 }
 
 function showFound(existing){
-const p=found;
-$("scanResult").innerHTML=`
-<div class="card">
-<h2>📦 ${esc(p.name||tx("Produk nie gevind nie","Product not found"))}</h2>
-${p.image?`<img class="preview" src="${esc(p.image)}">`:""}
-<p class="muted">Barcode: ${esc(p.barcode)}</p>
-${existing?`
-<div class="tile">
-<small>${tx("Huidige voorraad","Current stock")}</small>
-<strong>${Number(p.qty)} ${esc(p.unit||"items")}</strong>
-</div>
-<button class="btn full" onclick="manage('${p.id}')">➕➖ ${tx("Voeg by of gebruik voorraad","Add or use stock")}</button>
-<button class="btn secondary full" onclick="editor('${p.id}')">✏️ ${tx("Wysig produk","Edit product")}</button>
-`:`
-<p>${tx("Hierdie produk is nog nie in jou voorraad nie.","This product is not in your inventory yet.")}</p>
-<button class="btn full" onclick="registerFound()">➕ ${tx("Registreer produk","Register product")}</button>
-`}
-<button class="btn secondary full" onclick="searchPrices()">🌍 ${tx("Soek winkelpryse","Search store prices")}</button>
-</div>`;
+ const p=found;
+ $("scanResult").innerHTML=`
+ <div class="card">
+  <h2>📦 ${esc(p.name||tx("Produk nie gevind nie","Product not found"))}</h2>
+  ${p.image?`<img class="preview" src="${esc(p.image)}">`:""}
+  <p class="muted">Barcode: ${esc(p.barcode)}</p>
+  ${existing?`
+   <div class="tile">
+    <small>${tx("Huidige voorraad","Current stock")}</small>
+    <strong>${Number(p.qty)} ${esc(p.unit||"items")}</strong>
+   </div>
+   <button class="btn full" onclick="manage('${p.id}')">
+    ➕➖ ${tx("Voeg by of gebruik voorraad","Add or use stock")}
+   </button>
+   <button class="btn secondary full" onclick="editor('${p.id}')">
+    ✏️ ${tx("Wysig produk","Edit product")}
+   </button>
+  `:`
+   <p>${tx("Hierdie produk is nog nie in jou voorraad nie.","This product is not in your inventory yet.")}</p>
+   <button class="btn full" onclick="registerFound()">
+    ➕ ${tx("Registreer produk","Register product")}
+   </button>
+  `}
+  <button class="btn secondary full" onclick="searchPrices()">
+   🌍 ${tx("Soek winkelpryse","Search store prices")}
+  </button>
+ </div>`;
 }
 
 function registerFound(){
-if(found)editor("",found);
+ if(found)editor("",found);
 }
 
 function searchPrices(){
-if(!found)return;
-currentProduct=found;
-const q=encodeURIComponent([found.name,found.barcode].filter(Boolean).join(" "));
-$("scanResult").innerHTML=`
-<div class="card">
-<h2>🌍 ${tx("Winkelpryse","Store prices")}</h2>
-<p><b>${esc(found.name||found.barcode)}</b></p>
-<div class="note">${tx("Hierdie gratis weergawe kan winkelsoektogte oopmaak, maar kan nie alle lewendige pryse outomaties lees nie.","This free version can open store searches but cannot automatically read all live prices.")}</div>
-<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=${q}+South+Africa+price">🇿🇦 ${tx("Soek Suid-Afrikaanse pryse","Search South African prices")}</a>
-<hr>
-<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/search?q=${q}+Mozambique+preco">🇲🇿 ${tx("Soek Mosambiekse pryse","Search Mozambican prices")}</a>
-<hr>
-<button class="btn secondary full" onclick="showFound(!!data.products.find(p=>p.barcode===found.barcode))">${tx("Terug","Back")}</button>
-</div>`;
+ if(!found)return;
+ const q=encodeURIComponent(
+  [found.name,found.barcode].filter(Boolean).join(" ")
+ );
+ $("scanResult").innerHTML=`
+ <div class="card">
+  <h2>🌍 ${tx("Winkelpryse","Store prices")}</h2>
+  <p><b>${esc(found.name||found.barcode)}</b></p>
+  <div class="note">
+   ${tx(
+    "Hierdie gratis weergawe kan winkelsoektogte oopmaak, maar nie alle lewendige pryse outomaties lees nie.",
+    "This free version opens store searches but cannot automatically read all live prices."
+   )}
+  </div>
+  <a target="_blank" rel="noopener noreferrer"
+   href="https://www.google.com/search?q=${q}+South+Africa+price">
+   🇿🇦 ${tx("Soek Suid-Afrikaanse pryse","Search South African prices")}
+  </a>
+  <hr>
+  <a target="_blank" rel="noopener noreferrer"
+   href="https://www.google.com/search?q=${q}+Mozambique+preco">
+   🇲🇿 ${tx("Soek Mosambiekse pryse","Search Mozambican prices")}
+  </a>
+  <hr>
+  <button class="btn secondary full"
+   onclick="showFound(!!data.products.find(p=>p.barcode===found.barcode))">
+   ${tx("Terug","Back")}
+  </button>
+ </div>`;
 }
 
 function shopping(){
-const needed=data.products.filter(p=>need(p)>0);
-$("app").innerHTML=`
-<section class="card">
-<h2>🛒 ${tx("Outomatiese inkopielys","Automatic shopping list")}</h2>
-${needed.length?needed.map(p=>`
-<div class="item">
-<b>${esc(p.name)}</b><br>
-${tx("Koop","Buy")}: <strong>${need(p)} ${esc(p.unit||"items")}</strong><br>
-<span class="muted">${tx("Geskatte koste","Estimated cost")}: ${money(need(p)*Number(p.price||0),p.currency||data.currency)}</span>
-<button class="btn full" onclick="buyNeeded('${p.id}')">✓ ${tx("Gekoop","Bought")}</button>
-</div>`).join(""):`<p>${tx("Alles is op voorraad!","Everything is stocked!")}</p>`}
-</section>
-<section class="card">
-<h2>📝 ${tx("Ekstra inkopielys","Extra shopping list")}</h2>
-<div class="row">
-<input id="manualText" placeholder="${tx("Voeg item by","Add item")}">
-<button class="btn" onclick="addManual()">➕</button>
-</div>
-${data.manual.map((m,i)=>`<div class="item row"><div class="grow">${esc(typeof m==="string"?m:m.name||m.text||"Item")}</div><button class="btn secondary" onclick="removeManual(${i})">✓</button></div>`).join("")}
-</section>`;
+ const needed=data.products.filter(p=>need(p)>0);
+ $("app").innerHTML=`
+ <section class="card">
+  <h2>🛒 ${tx("Outomatiese inkopielys","Automatic shopping list")}</h2>
+  ${needed.length?needed.map(p=>`
+   <div class="item">
+    <b>${esc(p.name)}</b><br>
+    ${tx("Koop","Buy")}: <strong>${need(p)} ${esc(p.unit||"items")}</strong><br>
+    <span class="muted">
+     ${tx("Geskatte koste","Estimated cost")}:
+     ${money(need(p)*Number(p.price||0),p.currency||data.currency)}
+    </span>
+    <button class="btn full" onclick="buyNeeded('${p.id}')">
+     ✓ ${tx("Gekoop","Bought")}
+    </button>
+   </div>`).join(""):`<p>${tx("Alles is op voorraad!","Everything is stocked!")}</p>`}
+ </section>
+ <section class="card">
+  <h2>📝 ${tx("Ekstra inkopielys","Extra shopping list")}</h2>
+  <div class="row">
+   <input id="manualText" placeholder="${tx("Voeg item by","Add item")}">
+   <button class="btn" onclick="addManual()">➕</button>
+  </div>
+  ${data.manual.map((m,i)=>`
+   <div class="item row">
+    <div class="grow">${esc(typeof m==="string"?m:m.name||m.text||"Item")}</div>
+    <button class="btn secondary" onclick="removeManual(${i})">✓</button>
+   </div>`).join("")}
+ </section>`;
 }
 
 function buyNeeded(id){
-const p=data.products.find(x=>x.id===id);
-if(!p)return;
-const qty=need(p);
-if(qty<=0)return;
-p.qty=Number(p.qty)+qty;
-record("buy",p,qty,qty*Number(p.price||0));
-save();render();
+ const p=data.products.find(x=>x.id===id);
+ if(!p)return;
+ const qty=need(p);
+ if(qty<=0)return;
+ p.qty=Number(p.qty)+qty;
+ record("buy",p,qty,qty*Number(p.price||0));
+ save();render();
 }
 
 function addManual(){
-const name=$("manualText").value.trim();
-if(!name)return;
-data.manual.push(name);
-save();render();
+ const name=$("manualText").value.trim();
+ if(!name)return;
+ data.manual.push(name);
+ save();render();
 }
 
 function removeManual(i){
-data.manual.splice(i,1);
-save();render();
+ data.manual.splice(i,1);
+ save();render();
 }
 
 function settings(){
-$("app").innerHTML=`
-<section class="card">
-<h2>⚙️ ${tx("Instellings","Settings")}</h2>
-<label>${tx("Taal","Language")}</label>
-<select onchange="data.lang=this.value;save();render()">
-<option value="af" ${data.lang==="af"?"selected":""}>Afrikaans</option>
-<option value="en" ${data.lang==="en"?"selected":""}>English</option>
-</select>
-<label>${tx("Geldeenheid","Currency")}</label>
-<select onchange="data.currency=this.value;save();render()">
-<option value="ZAR" ${data.currency==="ZAR"?"selected":""}>🇿🇦 Rand – ZAR</option>
-<option value="MZN" ${data.currency==="MZN"?"selected":""}>🇲🇿 Metical – MZN</option>
-</select>
-<label>${tx("Maandelikse begroting","Monthly budget")}</label>
-<input type="number" min="0" value="${data.budget||0}" onchange="data.budget=Number(this.value)||0;save()">
-</section>
-<section class="card">
-<h2>💾 ${tx("Rugsteun en herstel","Backup and restore")}</h2>
-<button class="btn full" onclick="backup()">⬇️ ${tx("Laai rugsteun af","Download backup")}</button>
-<label>${tx("Herstel rugsteun","Restore backup")}</label>
-<input type="file" accept=".json,application/json" onchange="restore(this)">
-<p class="note">${tx("Data word op hierdie toestel se blaaier gestoor. Maak gereeld 'n rugsteun.","Data is stored in this device's browser. Back up regularly.")}</p>
-</section>
-<section class="card">
-<h2>🌸 My Home Stock</h2>
-<p>Pink 3D Edition 💗</p>
-<p class="muted">${tx("Skandeer produkte, voeg voorraad by en trek gebruikte voorraad af.","Scan products, add stock and subtract used stock.")}</p>
-</section>`;
+ $("app").innerHTML=`
+ <section class="card">
+  <h2>⚙️ ${tx("Instellings","Settings")}</h2>
+  <label>${tx("Taal","Language")}</label>
+  <select onchange="data.lang=this.value;save();render()">
+   <option value="af" ${data.lang==="af"?"selected":""}>Afrikaans</option>
+   <option value="en" ${data.lang==="en"?"selected":""}>English</option>
+  </select>
+  <label>${tx("Geldeenheid","Currency")}</label>
+  <select onchange="data.currency=this.value;save();render()">
+   <option value="ZAR" ${data.currency==="ZAR"?"selected":""}>🇿🇦 Rand – ZAR</option>
+   <option value="MZN" ${data.currency==="MZN"?"selected":""}>🇲🇿 Metical – MZN</option>
+  </select>
+  <label>${tx("Maandelikse begroting","Monthly budget")}</label>
+  <input type="number" min="0" value="${data.budget||0}"
+   onchange="data.budget=Number(this.value)||0;save()">
+ </section>
+ <section class="card">
+  <h2>💾 ${tx("Rugsteun en herstel","Backup and restore")}</h2>
+  <button class="btn full" onclick="backup()">
+   ⬇️ ${tx("Laai rugsteun af","Download backup")}
+  </button>
+  <label>${tx("Herstel rugsteun","Restore backup")}</label>
+  <input type="file" accept=".json,application/json" onchange="restore(this)">
+  <p class="note">
+   ${tx(
+    "Data word op hierdie toestel se blaaier gestoor. Maak gereeld 'n rugsteun.",
+    "Data is stored in this device's browser. Back up regularly."
+   )}
+  </p>
+ </section>
+ <section class="card">
+  <h2>🌸 My Home Stock</h2>
+  <p>Pink 3D Edition 💗</p>
+  <p class="muted">
+   ${tx(
+    "Skandeer produkte, voeg voorraad by en trek gebruikte voorraad af.",
+    "Scan products, add stock and subtract used stock."
+   )}
+  </p>
+  <button class="btn secondary full" onclick="showWelcome()">
+   ❤️ ${tx("Wys my spesiale welkomskerm","Show my special welcome screen")}
+  </button>
+ </section>`;
+}
+
+function showWelcome(){
+ if($("welcomeScreen"))return;
+ const w=document.createElement("div");
+ w.id="welcomeScreen";
+ w.setAttribute("role","dialog");
+ w.setAttribute("aria-modal","true");
+ w.innerHTML=`
+ <div class="welcomeCard">
+  <span class="floatHeart one">💕</span>
+  <span class="floatHeart two">✨</span>
+  <span class="floatHeart three">💗</span>
+  <div class="welcomeTop">✦ 'N KLEIN GESKENK MET GROOT LIEFDE ✦</div>
+  <div>
+   <div class="welcomeHeart">❤️</div>
+   <h1 class="welcomeTitle">Vir my Louise ❤️</h1>
+   <div class="welcomeRose">🌹🌸🌹</div>
+   <p class="welcomeText">
+    Welkom by jou eie klein wêreldjie.<br><br>
+    Elke blommetjie, elke kleur en elke klein detail
+    is met liefde vir jou gekies.<br><br>
+    Mag hierdie program jou lewe net 'n bietjie
+    makliker en mooier maak. ❤️
+   </p>
+  </div>
+  <div style="width:100%">
+   <button class="btn welcomeButton" onclick="closeWelcome()">
+    ❤️ OK – Maak my program oop ❤️
+   </button>
+   <p class="welcomeCredit">
+    Ontwerp deur Jp Jansen van Vuuren met die grootste liefde aan my vrou❤️
+   </p>
+  </div>
+ </div>`;
+ document.body.appendChild(w);
 }
 
 function backup(){
-const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
-const url=URL.createObjectURL(blob);
-const a=document.createElement("a");
-a.href=url;
-a.download="my-home-stock-backup-"+new Date().toISOString().slice(0,10)+".json";
-a.click();
-setTimeout(()=>URL.revokeObjectURL(url),1000);
+ const blob=new Blob([JSON.stringify(data,null,2)],{
+  type:"application/json"
+ });
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");
+ a.href=url;
+ a.download="my-home-stock-backup-"+new Date().toISOString().slice(0,10)+".json";
+ a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 
 function restore(input){
-const file=input.files?.[0];
-if(!file)return;
-const r=new FileReader();
-r.onload=()=>{
-try{
-const obj=JSON.parse(r.result);
-if(!obj||!Array.isArray(obj.products))throw Error();
-if(!confirm(tx("Vervang huidige data met rugsteun?","Replace current data with backup?")))return;
-data={...fresh(),...obj};
-data.manual=Array.isArray(data.manual)?data.manual:[];
-data.history=Array.isArray(data.history)?data.history:[];
-data.prices=Array.isArray(data.prices)?data.prices:[];
-save();go("home");
-}catch(e){
-alert(tx("Ongeldige rugsteunlêer.","Invalid backup file."));
-}
-};
-r.readAsText(file);
+ const file=input.files?.[0];
+ if(!file)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  try{
+   const obj=JSON.parse(r.result);
+   if(!obj||!Array.isArray(obj.products))throw Error();
+   if(!confirm(tx(
+    "Vervang huidige data met rugsteun?",
+    "Replace current data with backup?"
+   )))return;
+   data={...fresh(),...obj};
+   data.manual=Array.isArray(data.manual)?data.manual:[];
+   data.history=Array.isArray(data.history)?data.history:[];
+   data.prices=Array.isArray(data.prices)?data.prices:[];
+   save();go("home");
+  }catch(e){
+   alert(tx("Ongeldige rugsteunlêer.","Invalid backup file."));
+  }
+ };
+ r.readAsText(file);
 }
 
 render();
